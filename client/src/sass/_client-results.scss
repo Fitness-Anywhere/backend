@@ -1,0 +1,32 @@
+.ClientResults {
+  .ClientResults-wrapper {
+    .ClientResults-show {
+      width: $main-width;
+      margin: 4rem auto;
+
+      h3 {
+        font-size: 1.5rem;
+      }
+
+      .display-results {
+        margin: 4rem 0 0;
+        display: flex;
+        flex-wrap: wrap;
+      }
+
+      .go-back {
+        margin-top: 2rem;
+        a {
+          display: inline-block;
+          margin-top: 1.5rem;
+          background: $main-color;
+          color: $white;
+          padding: 0.7rem 2rem;
+          border-radius: 4px;
+          text-decoration: none;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+}

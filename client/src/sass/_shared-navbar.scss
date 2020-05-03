@@ -1,0 +1,32 @@
+.Sharednavbar {
+  border-bottom: 1px solid grey;
+  .Sharednavbar-container {
+    @include flex(space-between);
+    width: $main-width;
+    margin: 0 auto;
+    height: 8vh;
+    align-items: center;
+    padding: 0 1rem;
+    text-transform: capitalize;
+    z-index: 100;
+    color: $black;
+
+    nav {
+      a {
+        text-decoration: none;
+        color: $black;
+
+        @media (max-width: $med-desktop) {
+          font-size: 1rem;
+        }
+
+        font-size: 1.3rem;
+        padding: 0.5rem;
+
+        &:first-child {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+}

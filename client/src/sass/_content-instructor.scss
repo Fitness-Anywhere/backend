@@ -1,0 +1,141 @@
+.Content {
+  width: $main-width;
+  margin: 6rem auto;
+  //   border: 1px solid blue;
+  position: relative;
+
+  h3 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h4 {
+    text-align: center;
+    text-transform: capitalize;
+    background: rgb(47, 153, 47);
+    //  background: $main-color;
+    color: $white;
+    width: 220px;
+    margin: 0 auto;
+    border-radius: 3px;
+    display: flex;
+    justify-content: center;
+    padding: 0.6rem;
+    position: absolute;
+    top: -10%;
+    left: 45%;
+    //  transition: all 0.3s ease;
+    //  right: 45%;
+    //  transform: translate(0, -50%);
+  }
+
+  p {
+    font-size: 1.2rem;
+    margin: 0.8rem 0;
+  }
+}
+
+.AddClassesForm {
+  //   border: 1px solid red;
+  width: $main-width;
+  margin: 0 auto;
+  //   height: 30vh;
+  display: flex;
+  @media (max-width: $med-desktop) {
+    height: 40vh;
+  }
+
+  form {
+    //  align-items: center;
+    //  margin: 5rem auto;
+    //  border: 1px solid green;
+    width: 100%;
+    .div-parent {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      // border: 1px dotted blue;
+
+      .div-one,
+      .div-two,
+      .div-three {
+        //   border: 1px solid red;
+        width: 30%;
+      }
+      // div {
+      //   border: 1px solid blue;
+      //   //   width: 30%;
+      // }
+
+      label {
+        display: inline-block;
+        margin-bottom: 2rem;
+        //   border: 2px solid red;
+        width: 100%;
+        position: relative;
+
+        input {
+          // color: red;
+          //   width: 200px;
+          width: 100%;
+          display: block;
+          // margin-bottom: 2rem;
+          // border: 1px solid red;
+          outline: none;
+          border: none;
+          border-bottom: 1px solid grey;
+          //  padding-bottom: 0.5rem;
+          padding: 0.5rem;
+          font-size: 1rem;
+          //   margin-bottom: 3rem;
+          // border: 1px solid blue;
+          color: black;
+
+          &:hover {
+            border-bottom: 2px solid #333;
+          }
+        }
+
+        .error {
+          color: red;
+          position: absolute;
+          top: 1.6rem;
+          left: 0.5rem;
+          font-size: 0.9rem;
+        }
+      }
+    }
+
+    .date-time-picker {
+      // border: 1px solid blue;
+      display: flex;
+      justify-content: space-between;
+      width: 60%;
+      margin: 0 auto;
+    }
+
+    #time-picker,
+    #date-picker-dialog {
+      border: none;
+      padding-bottom: 0;
+      margin-bottom: 0.5rem;
+      display: block;
+      width: 70%;
+      // border: 1px solid red;
+    }
+  }
+
+  .btn-add {
+    button {
+      padding: 0.7rem 2rem;
+      font-size: 1.1rem;
+      border-radius: 4px;
+      outline: none;
+      cursor: pointer;
+      margin-top: 3rem;
+      background: $main-color;
+      color: $white;
+      text-transform: uppercase;
+    }
+  }
+}

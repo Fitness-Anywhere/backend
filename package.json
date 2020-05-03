@@ -4,9 +4,12 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon index.js",
     "start": "node index.js",
-    "test": "cross-env NODE_ENV=testing jest --watch"
+    "test": "cross-env NODE_ENV=testing jest --watch",
+    "server": "nodemon index.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
   },
   "repository": {
     "type": "git",
@@ -31,6 +34,7 @@
     "stripe": "^8.47.1"
   },
   "devDependencies": {
+    "concurrently": "^5.2.0",
     "cross-env": "^7.0.2",
     "jest": "^25.5.0",
     "nodemon": "^2.0.3",

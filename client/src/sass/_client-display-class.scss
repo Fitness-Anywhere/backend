@@ -1,0 +1,32 @@
+.ClientDisplayClasses {
+  h3 {
+    font-size: 1.6rem;
+  }
+  width: $main-width;
+  margin: 5rem auto;
+  .ClientDisplayClasses-wrapper {
+    margin-top: 3rem;
+    @include flex(center);
+    flex-wrap: wrap;
+  }
+}
+
+#join {
+  align-items: center;
+  display: flex;
+  padding: 0 0.7rem;
+  border-radius: 50%;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  background: $main-color;
+  color: $white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  &:hover {
+    background: lighten($main-color, 10%);
+  }
+}
+
+.added {
+  background: grey;
+}

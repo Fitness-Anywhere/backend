@@ -1,0 +1,39 @@
+.Navbar {
+  .Navbar-container {
+    @include flex(space-between);
+    width: 87%;
+    margin: 0 auto;
+    height: 7vh;
+    align-items: center;
+    padding: 0 1rem;
+    text-transform: capitalize;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    color: $white;
+
+    h1 {
+      @media (max-width: $med-desktop) {
+        font-size: 1.6rem;
+      }
+    }
+
+    nav {
+      a {
+        text-decoration: none;
+        color: $white;
+        font-size: 1.3rem;
+        padding: 0.5rem;
+        @media (max-width: $med-desktop) {
+          font-size: 1rem;
+        }
+        &:first-child {
+          margin-right: 1rem;
+          color: $main-color;
+        }
+      }
+    }
+  }
+}
