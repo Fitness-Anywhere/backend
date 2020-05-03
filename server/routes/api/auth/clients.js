@@ -91,7 +91,7 @@ router.post('/login', async (req, res, next) => {
             id: client.id
         });
     } catch (error) {
-        next(err);
+        next(error);
     }
 });
 

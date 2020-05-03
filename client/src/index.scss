@@ -1,0 +1,27 @@
+@import "./sass/mixins";
+@import "./sass/variables";
+@import "./sass/global";
+
+// clients
+@import "./sass/clientnav";
+@import "./sass/cilent-header";
+@import "./sass/displayCards";
+@import "./sass/client-display-class";
+@import "./sass/client-profile";
+@import "./sass/client-results";
+@import "./sass/Client-model";
+
+// instructor
+@import "./sass/instructor-header";
+@import "./sass/content-instructor";
+@import "./sass/instructor-class";
+@import "./sass/instructor-singleClass";
+@import "./sass/instructor-edit";
+@import "./sass/instructor-profile";
+
+// global
+@import "./sass/footer";
+@import "./sass/shared-navbar";
+
+// stripe
+@import "./sass/CardSectionStyles";

@@ -1,0 +1,84 @@
+.DisplayInstructorClasses {
+  width: $main-width;
+  margin: 2rem auto 5rem;
+  @include flex(center);
+  flex-wrap: wrap;
+
+  a {
+    text-decoration: none;
+  }
+}
+
+.InstructorCardClass {
+  width: 510px;
+  background: $white;
+  border-radius: 5px;
+
+  @media (max-width: $big-desktop) {
+    width: 510px;
+  }
+  margin: 0 1rem 5rem;
+
+  .InstructorCardClass-img {
+    img {
+      width: 100%;
+      border-radius: 5px;
+      height: 320px;
+      object-fit: cover;
+    }
+  }
+
+  .InstructorCardClass-description {
+    padding: 0 0.5rem 1rem;
+    text-transform: capitalize;
+
+    .Instructor-top-row {
+      @include flex(space-between);
+      padding: 0.8rem 0;
+      font-size: 1.1rem;
+
+      .name {
+        color: $black;
+        font-size: 1.2rem;
+      }
+
+      .price {
+        color: $main-color;
+        font-size: 1.2rem;
+      }
+    }
+
+    .duration {
+      color: grey;
+      margin-bottom: 0.5rem;
+    }
+
+    .bottom-row {
+      @include flex(space-between);
+
+      .starts {
+        color: $black;
+        border: 1px solid $black;
+        display: inline-block;
+        padding: 0.8rem 1rem;
+        border-radius: 4px;
+      }
+
+      .icons {
+        font-size: 1.2rem;
+        display: flex;
+        align-items: center;
+
+        .edit {
+          cursor: pointer;
+          margin-right: 1rem;
+          padding: 0.2rem;
+        }
+        .del {
+          cursor: pointer;
+          padding: 0.2rem;
+        }
+      }
+    }
+  }
+}

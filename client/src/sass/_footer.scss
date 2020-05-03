@@ -1,0 +1,22 @@
+.Footer {
+  height: 15vh;
+  background: $black;
+  color: $white;
+  align-items: center;
+  padding: 1rem 0;
+
+  footer {
+    width: $main-width;
+    margin: 0 auto;
+    text-align: center;
+
+    h1 {
+      margin: 2rem 0;
+    }
+
+    a {
+      font-size: 1.5rem;
+      color: $white;
+    }
+  }
+}
