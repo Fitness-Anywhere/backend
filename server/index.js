@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const helmet = require('helmet');
+const path= require('path');
 // custom middlewares
 const auth = require('./middleware/auth');
 const errorMiddleware = require('./middleware/error');
@@ -29,6 +30,6 @@ if (process.env.NODE_ENV === 'production') {
     });
 }
 
-// server.use(errorMiddleware);
+server.use(errorMiddleware);
 
 module.exports = server;
