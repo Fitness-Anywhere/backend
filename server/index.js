@@ -19,8 +19,6 @@ server.use('/api/clients', auth, require('./routes/api/clients'));
 server.use('/api/classes', auth, require('./routes/api/classes'));
 server.use('/api/webhooks', require('./routes/api/webhooks'));
 
-server.use(errorMiddleware);
-
 // DEPLOYMENT - Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
     // Set static   
@@ -30,5 +28,7 @@ if (process.env.NODE_ENV === 'production') {
       res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
     });
 }
+
+server.use(errorMiddleware);
 
 module.exports = server;
