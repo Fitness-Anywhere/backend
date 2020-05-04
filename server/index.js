@@ -21,4 +21,14 @@ server.use('/api/webhooks', require('./routes/api/webhooks'));
 
 server.use(errorMiddleware);
 
+// DEPLOYMENT - Serve static assets if in production
+if (process.env.NODE_ENV === 'production') {
+    // Set static   
+    server.use(express.static('client/build'));
+  
+    server.get('*', (req, res) => {
+      res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+}
+
 module.exports = server;
