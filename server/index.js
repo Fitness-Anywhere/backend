@@ -10,7 +10,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.get('/', (req, res) => res.send('API running'));
+// server.get('/', (req, res) => res.send('API running'));
 
 // Define routes
 server.use('/api/auth/', require('./routes/api/auth'));
