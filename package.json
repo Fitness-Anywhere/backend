@@ -13,14 +13,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Build-Week-Anywhere-Fitness-04/back-end.git"
+    "url": "git+https://github.com/Fitness-Anywhere/App.git"
   },
   "author": "Fabricio Bezerra",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Build-Week-Anywhere-Fitness-04/back-end/issues"
+    "url": "https://github.com/Fitness-Anywhere/App/issues"
   },
-  "homepage": "https://github.com/Build-Week-Anywhere-Fitness-04/back-end#readme",
+  "homepage": "https://github.com/Fitness-Anywhere/App#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
