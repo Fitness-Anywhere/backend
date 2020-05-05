@@ -1,169 +1,132 @@
 // REACT I only
-import React, { useState, useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
-import { Styles, GoogleBtn, FacebookBtn } from "./Styles";
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
-import * as yup from "yup";
-
-const initialLoginValues = {
+const initialValues = {
   username: "",
   password: "",
   instructorOrClient: "",
 };
-
-const initialLoginErrors = {
-  username: "",
-  password: "",
-  instructorOrClient: "",
-};
-
-const loginSchema = yup.object().shape({
-  username: yup
-    .string()
-    .min(4, "Username must be at least 4 characters.")
-    .required("Username is required to login."),
-  password: yup
-    .string()
-    .min(6, "Password must be at least 6 characters.")
-    .required("Please enter your password."),
-  instructorOrClient: yup
-    .string()
-    .matches(/(instructor|client)/, "Either instructor or client.")
-    .required("Please select instructor or client."),
-});
 
 function Login() {
   const history = useHistory();
-  const [loginValues, setLoginValues] = useState(initialLoginValues);
-  const [loginErrors, setLoginErrors] = useState(initialLoginErrors);
+  const { register, errors, handleSubmit, reset } = useForm({ initialValues });
 
-  const [formDisabled, setFormDisabled] = useState(true);
-
-  const onInputChange = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-
-    yup
-      .reach(loginSchema, name)
-      .validate(value)
-      .then((valid) => {
-        setLoginErrors({
-          ...loginErrors,
-          [name]: "",
-        });
-      })
-      .catch((err) => {
-        setLoginErrors({
-          ...loginErrors,
-          [name]: err.errors[0],
-        });
-      });
-
-    setLoginValues({
-      ...loginValues,
-      [name]: value,
-    });
-  };
-
-  useEffect(() => {
-    loginSchema.isValid(loginValues).then((valid) => {
-      setFormDisabled(!valid);
-    });
-  }, [loginValues]);
+  const dispatch = useDispatch();
+  const { loading, error } = useSelector((state) => state.credentialReducer);
 
   // POST / api / auth / instructors / login
   // POST / api / auth / clients / login
 
   // omar12 omar12 instructor
   // omarr omarrr client
-  const onSubmit = (e) => {
-    e.preventDefault();
-    if (loginValues.instructorOrClient === "instructor") {
+  const onSubmit = (values) => {
+    console.log("values herer", values);
+    const { username, password, instructorOrClient } = values;
+    const newValues = { username, password };
+    if (instructorOrClient === "instructor") {
+      dispatch({ type: "LOGGING_IN_USER" });
       axiosWithAuth()
-        .post("/api/auth/instructors/login", loginValues)
+        .post("/api/auth/instructors/login", newValues)
         .then((res) => {
-          console.log(res);
           localStorage.setItem("token", JSON.stringify(res.data.token));
           localStorage.setItem("id", JSON.stringify(res.data.id));
           history.push(`/account/instructor/${res.data.id}`);
+          dispatch({ type: "USER_LOGGED_IN_SUCCESSFULLY" });
+          reset(initialValues);
         })
         .catch((err) => {
           console.log(err.response.data.errorMessage);
+          dispatch({
+            type: "ERROR_LOGING_IN",
+            payload: err.response.data.errorMessage,
+          });
         });
     } else {
+      dispatch({ type: "LOGGING_IN_USER" });
+
       axiosWithAuth()
-        .post("/api/auth/clients/login", loginValues)
+        .post("/api/auth/clients/login", newValues)
         .then((res) => {
           localStorage.setItem("token", JSON.stringify(res.data.token));
           localStorage.setItem("id", JSON.stringify(res.data.id));
           history.push(`/account/client/${res.data.id}`);
+          dispatch({ type: "USER_LOGGED_IN_SUCCESSFULLY" });
+
+          reset(initialValues);
         })
         .catch((err) => {
-          console.log(err);
+          console.log(err.response.data.errorMessage);
+          dispatch({
+            type: "ERROR_LOGING_IN",
+            payload: err.response.data.errorMessage,
+          });
         });
     }
-
-    //  const loginUser = {
-    //    username: e.target.username,
-    //    password: e.target.password,
-    //  };
   };
 
+  const testing = () => {
+    console.log("clicking...");
+  };
   return (
-    <Styles>
-      <form>
-        <h1>Login</h1>
-
-        <label>
-          Username:&nbsp;
+    <div className="Login">
+      <h1>Log in</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
+        <label htmlFor="username">
           <input
-            onChange={onInputChange}
+            type="text"
             name="username"
-            type="username"
-            errors={loginErrors}
+            id="username"
+            placeholder="username"
+            ref={register({ required: true })}
           />
+          {errors.username && errors.username.type === "required" && (
+            <p className="Login-error">Required field</p>
+          )}
+          {error.includes("Invalid") && <p className="Login-error">{error}</p>}
         </label>
-        <div className="errors">{loginErrors.username}</div>
-
-        <label>
-          Password:&nbsp;
+        <label htmlFor="password">
           <input
-            onChange={onInputChange}
-            name="password"
             type="password"
-            errors={loginErrors}
+            name="password"
+            id="password"
+            placeholder="password"
+            ref={register({ required: true })}
           />
+          {errors.username && errors.username.type === "required" && (
+            <p className="Login-error">Required field</p>
+          )}
+          {error.includes("Invalid") && <p className="Login-error">{error}</p>}
         </label>
-        <div className="errors">{loginErrors.password}</div>
 
-        <label>
-          Instructor or Client:&nbsp;
-          <select onChange={onInputChange} name="instructorOrClient">
-            <option defaultValue="">Please Choose</option>
+        <label htmlFor="select" className="select">
+          <select
+            name="instructorOrClient"
+            id="select"
+            ref={register({ required: true })}
+          >
+            <option value="">Login as</option>
             <option value="instructor">Instructor</option>
             <option value="client">Client</option>
           </select>
+          {errors.instructorOrClient && (
+            <p className="Login-error">Required field</p>
+          )}
         </label>
-        <div className="errors">{loginErrors.instructorOrClient}</div>
 
-        <button onClick={onSubmit} disabled={formDisabled}>
-          Login
+        <button
+          onClick={testing}
+          type="submit"
+          disabled={loading}
+          className={loading ? "submitting" : ""}
+        >
+          {loading ? "Submitting..." : "Login"}
         </button>
-
-        {/*<GoogleBtn>
-            <button className="buttonText"><i class="fab fa-google"></i>Sign in with Google</button>
-        </GoogleBtn>
-
-        <FacebookBtn>
-            <button className="buttonText"><i class="fab fa-facebook"></i>Sign in with Facebook</button>
-        </FacebookBtn> */}
-
-        <h5>
-          Need to register? <Link to="/signup">Sign up here.</Link>
-        </h5>
       </form>
-    </Styles>
+    </div>
   );
 }
 

@@ -23,7 +23,7 @@ const Navbar = () => {
         <h1>fitness anywhere</h1>
         <nav>
           <NavLink to={`${url}/profile`}>{`Welcome ${name}`}</NavLink>
-          <NavLink onClick={logout} to="/login">
+          <NavLink onClick={logout} to="/">
             Logout
           </NavLink>
         </nav>

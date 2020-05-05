@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { convertingTime } from "../../../helperFunctions/convertingTime";
 import Sharednav from "../Sharednav";
 import GoogleMap from "../googleMap";
@@ -8,10 +8,16 @@ import ClientModel from "./ClientModel";
 
 const ClientSingleClass = () => {
   const { id, c_id } = useParams();
+  const dispatch = useDispatch();
   const reducer = useSelector((state) => ({
     ...state,
   }));
+
+  useEffect(() => {
+    dispatch({ type: "PROCCESSING_PAYMENT" });
+  }, []);
   const { allClasses } = reducer.clientReducer;
+
   const findClass = allClasses.find((single) => single.id === Number(c_id));
 
   const {

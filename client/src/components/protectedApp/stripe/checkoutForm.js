@@ -1,23 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 
 import CardSection from "./CardSection";
 
+// import CheckCircleIcon from '@material-ui/icons/CheckCircle';
+
 export default function CheckoutForm() {
+  const dispatch = useDispatch();
   const [client, setClient] = useState("");
+  const [isProcessing, setIsProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
-  const params = useParams();
+  const { id, c_id } = useParams();
   //   console.log("params ", params);
-  const class_id = 21;
+  //   const class_id = 21;
 
   useEffect(() => {
     axiosWithAuth()
-      .get(`/api/clients/${params.id}/classes/${class_id}/payment`)
+      .get(`/api/clients/${id}/classes/${c_id}/payment`)
       .then((res) => {
         console.log("res ", res);
+        //   dispatch({ type: "PROCCESSING_PAYMENT" });
+
         setClient(res.data.client_secret);
       })
       .catch((err) => {
@@ -38,6 +45,8 @@ export default function CheckoutForm() {
     //  } catch (error) {
     //    console.log("error ", error);
     //  }
+    setIsProcessing(true);
+    //  dispatch({ type: "PROCCESSING_PAYMENT" });
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -66,15 +75,21 @@ export default function CheckoutForm() {
         // execution. Set up a webhook or plugin to listen for the
         // payment_intent.succeeded event that handles any business critical
         // post-payment actions.
+        setIsProcessing(false);
+        dispatch({ type: "PAYMENT_PROCCESSED" });
       }
     }
   };
 
+  const cssClasses = isProcessing
+    ? "proccessing-payment-btn confirm-btn"
+    : "confirm-btn";
+
   return (
     <form onSubmit={handleSubmit}>
       <CardSection />
-      <button disabled={!stripe} className="confirm-btn">
-        Confirm order
+      <button disabled={isProcessing} className={cssClasses}>
+        {isProcessing ? "proccesing..." : "confirm payment"}
       </button>
     </form>
   );

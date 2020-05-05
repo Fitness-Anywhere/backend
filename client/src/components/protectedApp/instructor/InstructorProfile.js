@@ -15,7 +15,7 @@ const InstructorProfile = () => {
 
   //          })
   // }, [input])
-  console.log("id ", process.env.REACT_APP_API_STRIPE_CLIENT_ID);
+
   const handleClick = () => {
     window.location.href = `https://connect.stripe.com/express/oauth/authorize?client_id=${process.env.REACT_APP_API_STRIPE_CLIENT_ID}&state=${id}${process.env.REACT_APP_API_STRIPE_STATE_VALUE}&suggested_capabilities[]=transfers&redirect_uri=https://fitness-anywhere.herokuapp.com/api/auth/instructors/stripe/connect/`;
   };

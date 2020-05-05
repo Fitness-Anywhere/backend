@@ -11,4 +11,15 @@ export const initialValues = {
   error: "",
   joinedClass: false,
   classesJoined: [],
+
+  // stripe
+  isProccessing: false,
+
+  // credential reducer
+  createdSuccessfully: "",
+};
+
+export const credentialValues = {
+  loading: false,
+  error: "",
 };

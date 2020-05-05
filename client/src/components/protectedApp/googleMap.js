@@ -6,7 +6,6 @@ import axios from "axios";
 const AnyReactComponent = ({ text }) => <div className="icon">{text}</div>;
 
 const googleKey = process.env.REACT_APP_API_KEY_GOOGLE;
-console.log(googleKey)
 
 const GoogleMap = ({ location }) => {
   const [center, setCenter] = useState({ lat: 59.95, lng: 30.33 });
