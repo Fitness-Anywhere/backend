@@ -1,15 +1,74 @@
+#ClientModel {
+  #add-to-cart-btn {
+    button {
+      // color: red;
+      font-weight: normal;
+      font-size: 1rem;
+    }
+  }
+
+  #close-success-payment {
+    button {
+      color: red;
+    }
+  }
+}
+
+.success-payment {
+  color: green;
+  //   border: 1px solid red;
+  padding: 0.5rem;
+  .success-icon {
+    text-align: center;
+    font-size: 2.5rem;
+  }
+
+  h3 {
+    text-transform: capitalize;
+    margin: 1rem 0;
+    font-size: 1.5rem;
+  }
+}
+
 .show-payment-info {
   //   border: 1px solid red;
   padding: 1rem 0;
+  color: $black;
+
+  .show-payment-info-options {
+    //  border: 1px solid blue;
+    display: flex;
+    justify-content: space-between;
+
+    h2 {
+      margin-bottom: 1.5rem;
+      text-transform: capitalize;
+    }
+
+    p {
+      margin-bottom: 1rem;
+      display: block;
+      font-size: 1.5rem;
+      // font-weight: bold;
+    }
+
+    #close-btn {
+      button {
+        color: $black;
+        //   font-weight: normal;
+        //   text-transform: capitalize;
+
+        //   &:hover {
+        //     background: none;
+        //   }
+      }
+    }
+  }
 
   .show-payment-info-img {
     width: 550px;
     height: 25vh;
-
-    span {
-      margin-bottom: 1rem;
-      display: block;
-    }
+    //  border: 1px solid red;
 
     img {
       width: 100%;
@@ -18,17 +77,22 @@
       border-radius: 4px;
     }
 
-    margin-bottom: 4rem;
+    margin-bottom: 2rem;
   }
 }
 
 .confirm-btn {
   display: inline-block;
-  margin-top: 1rem;
-  padding: 0.4rem 1.4rem;
+  margin-top: 1.5rem;
+  padding: 0.6rem 1.4rem;
   font-size: 1rem;
   border-radius: 4px;
   color: $white;
   background: $main-color;
   cursor: pointer;
+}
+
+.proccessing-payment-btn {
+  background: lighten($main-color, 20%);
+  cursor: not-allowed;
 }

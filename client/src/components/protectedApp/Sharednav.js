@@ -10,7 +10,7 @@ const Sharednav = () => {
       <div className="Sharednavbar-container">
         <h1>fitness anywhere</h1>
         <nav>
-          <NavLink to="/login" onClick={logout}>
+          <NavLink to="/" onClick={logout}>
             logout
           </NavLink>
         </nav>

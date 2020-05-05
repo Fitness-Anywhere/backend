@@ -1,0 +1,72 @@
+.Navbar-wrapper {
+  border-bottom: 1px solid $black;
+  .Marketing-Navbar {
+    width: $main-width;
+    height: 7vh;
+    margin: 0 auto;
+    //   border: 1px solid red;
+    padding: 0 1rem;
+    text-transform: capitalize;
+
+    @include flex(space-between);
+    align-items: center;
+
+    #model-nav {
+      // border: 1px solid red;
+      display: flex;
+
+      a {
+        //   border: 1px solid red;
+        margin-right: 1rem;
+        padding: 0.2rem 0.4rem;
+        color: $black;
+        text-transform: uppercase;
+        font-size: 1rem;
+
+        &:first-child {
+          //  color: blue;
+          padding-top: 0.7rem;
+          font-weight: bold;
+          padding: 0.6rem 1rem;
+          //  background: $white;
+          margin: 0;
+        }
+
+        &:last-child {
+          margin: 0;
+        }
+      }
+
+      .active {
+        color: $main-color;
+      }
+    }
+  }
+}
+
+/// model links
+
+#model-links {
+  //   border: 1px solid red;
+  #model-links-btn {
+    button {
+      color: $black;
+      font-size: 1rem;
+      // border: 1px soli red;
+
+      &:hover {
+        background: none;
+      }
+    }
+  }
+}
+
+.home-modal-container {
+  #close-credential-modal {
+    button {
+      &:hover {
+        background: none;
+      }
+    }
+  }
+}

@@ -8,11 +8,32 @@
 }
 
 input,
-button {
+button,
+select {
   outline: none;
+  //   display: inline-block;
+}
+// span,
+// a,
+// label {
+//   //   display: inline-block;
+// }
+
+a {
+  text-decoration: none;
+}
+
+a {
+  font-size: 1.3rem;
+}
+
+input {
+  font-size: 1.2rem;
 }
 
 body {
   font-family: "Raleway", sans-serif;
+  color: $black;
   //   line-height: 1.1;
+  overflow-x: hidden;
 }
