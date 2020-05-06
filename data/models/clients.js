@@ -29,11 +29,19 @@ const findClassById = (client_id, class_id) => (
         .join('classes', 'classes.id', '=', 'class_clients.class_id')
         .select('classes.*')
         .first()
-)
+);
 
 const removeClass = (client_id, class_id) => (
     db('class_clients').where({ client_id, class_id }).del()
-)
+);
+
+const addStripeAccountId = (client_id, stripe_account_id) => (
+    db('clients').where({id: client_id}).update({stripe_account_id}, '*')
+);
+
+const addStripePaymentId = (client_id, class_id, stripe_payment_id) => (
+    db('class_clients').where({ client_id, class_id }).update({ stripe_payment_id }, '*')
+);
 
 module.exports = {
     findAll,
@@ -44,5 +52,7 @@ module.exports = {
     update,
     findClasses,
     findClassById,
-    removeClass
+    removeClass,
+    addStripeAccountId,
+    addStripePaymentId
 }
