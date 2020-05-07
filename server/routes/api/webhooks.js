@@ -17,6 +17,7 @@ router.post('/stripe', async (req, res, next) => {
 
         if (event.type === 'payment_intent.succeeded') {
             const paymentIntent = event.data.object;
+            console.log('Payment intent: ', paymentIntent);
             handleSuccessfulPaymentIntent(paymentIntent);
         }
 
@@ -29,7 +30,7 @@ router.post('/stripe', async (req, res, next) => {
 const handleSuccessfulPaymentIntent = async (paymentIntent) => {
     // Fulfill the purchase.
   console.log('PaymentIntent: ' + JSON.stringify(paymentIntent));
-  const { client_id, class_id } = JSON.stringify(paymentIntent.metadata);
+  const { client_id, class_id } = paymentIntent.metadata;
   await Classes.addStripePaymentId(class_id, client_id, paymentIntent.id);
 }
 
