@@ -35,9 +35,10 @@ const removeClass = (client_id, class_id) => (
     db('class_clients').where({ client_id, class_id }).del()
 );
 
-const addStripeAccountId = (client_id, stripe_account_id) => (
-    db('clients').where({id: client_id}).update({stripe_account_id}, '*')
-);
+const addStripeAccountId = async (client_id, stripe_account_id) => {
+    const [id] = await db('clients').where({id: client_id}).update({stripe_account_id}, 'id');
+    return findById(id);
+};
 
 const addStripePaymentId = (client_id, class_id, stripe_payment_id) => (
     db('class_clients').where({ client_id, class_id }).update({ stripe_payment_id }, '*')

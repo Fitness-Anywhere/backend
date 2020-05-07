@@ -6,7 +6,8 @@ module.exports = [
         password: bcrypt.hashSync('omar12', 12),
         first_name: 'Omar',
         last_name: 'Lopez',
-        email: 'omar@gmail.com'
+        email: 'omar@gmail.com',
+        stripe_account_id: 'acct_1Gdp0QIXRCCTqfEf'
     },
     {
         username: 'testinstructor',
