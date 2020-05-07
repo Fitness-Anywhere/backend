@@ -3,7 +3,10 @@ const Classes = require('../../../data/models/classes');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 
-router.post('/stripe', async (req, res, next) => {
+// Use body-parser to retrieve the raw body as a buffer
+const bodyParser = require('body-parser');
+
+router.post('/stripe', bodyParser.raw({type: 'application/json'}), async (req, res, next) => {
     try {
         const sig = req.headers['stripe-signature'];
 
