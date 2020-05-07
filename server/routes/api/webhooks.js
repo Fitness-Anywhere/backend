@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 router.post('/stripe', bodyParser.raw({type: 'application/json'}), async (req, res, next) => {
     try {
         const sig = req.headers['stripe-signature'];
-
+        console.log('%%%%%%%%%%%%%%%%%%%%%%%');
         let event;
 
         // Verify webhook signature and extract the event.
@@ -34,7 +34,6 @@ router.post('/stripe', bodyParser.raw({type: 'application/json'}), async (req, r
 
 const handleSuccessfulPaymentIntent = async (paymentIntent) => {
     // Fulfill the purchase.
-  console.log('PaymentIntent: ' + JSON.stringify(paymentIntent));
   const { client_id, class_id } = paymentIntent.metadata;
   await Classes.addStripePaymentId(class_id, client_id, paymentIntent.id);
 }
