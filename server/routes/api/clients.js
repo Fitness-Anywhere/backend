@@ -13,7 +13,6 @@ const verifyClientToken = require('../../middleware/verifyClientToken');
 
 // Middleware that guarantees user logged in is a client
 router.use('/', verifyClientToken);
-
 router.use('/:id', verifyId);
 router.use('/:id/classes/:class_id', verifyClassId);
 router.use('/:id/classes/:class_id', verifyClientPermissionToClass);
@@ -86,7 +85,7 @@ router.put('/:id', async (req, res, next) => {
 router.post('/:id/classes', async (req, res, next) => {
     try {
         const { class_id } = req.body;
-
+        
         if (!class_id) {
             return res.status(401).json({
                 errorMessage: 'Missing required field'
@@ -95,12 +94,65 @@ router.post('/:id/classes', async (req, res, next) => {
 
         // TODO check if client is already register in the class
 
+        // update DB
         const classRegistered = await Class.registerClient(req.params.id, class_id);
-        res.json(classRegistered);
+
+        // get client secret
+        const client_secret = await createPaymentIntent(req.client, classRegistered);
+        
+        // send client secret to FE
+        res.json({ client_secret });
     } catch (error) {
         next(error);
     }
 });
+
+const createPaymentIntent = async (client, classToRegister) => {
+    try {
+        const instructor = await Instructor.findById(classToRegister.instructor_id);
+        
+        let newClient = client;
+
+        if (!classToRegister.price) {
+            return res.status(401).json({
+                errorMessage: 'The selected class has no charge'
+            });
+        }
+
+        if (!instructor.stripe_account_id) {
+            return res.status(401).json({
+                errorMessage: 'The instructor of the selected class has not set up automatic payments'
+            });
+        }
+
+        // get or create client stripe id
+        if (!newClient.stripe_account_id) {
+            const customer = await stripe.customers.create({
+                email: newClient.email,
+                name: `${newClient.first_name} ${newClient.last_name}`,
+            });
+
+            newClient = await Client.addStripeAccountId(newClient.id, customer.id);
+        }
+
+        // create payment intent
+        const paymentIntent = await stripe.paymentIntents.create({
+            payment_method_types: ['card'],
+            amount: classToRegister.price * 100,
+            currency: 'usd',
+            // if client has stripe account, add it here using customer key
+            customer: newClient.stripe_account_id,
+            transfer_data: {
+                destination: instructor.stripe_account_id,
+            }
+        });
+
+        console.log('client_sec: ', paymentIntent.client_secret);
+        return paymentIntent.client_secret;
+    } catch (error) {
+        throw new Error('Error in payment intent');
+    }
+}
 
 // @route   GET /api/clients/:id/classes
 // @desc    Return classes from an specific client
@@ -138,6 +190,8 @@ router.delete('/:id/classes/:class_id', async (req, res, next) => {
     }
 });
 
+
+
 // @route   GET /api/clients/:id/classes/:class_id/payment
 // @desc    Pay for a class
 router.get('/:id/classes/:class_id/payment', async (req, res, next) => {
@@ -168,7 +222,7 @@ router.get('/:id/classes/:class_id/payment', async (req, res, next) => {
         }
 
         // create payment intent
-        const paymentIntent = await stripe.paymentIntents.create({
+        stripe.paymentIntents.create({
             payment_method_types: ['card'],
             amount: req.class.price * 100,
             currency: 'usd',
@@ -177,7 +231,8 @@ router.get('/:id/classes/:class_id/payment', async (req, res, next) => {
             transfer_data: {
                 destination: instructor.stripe_account_id,
             }
-        }).then(function(paymentIntent) {
+        }).then(paymentIntent => {
+            console.log(paymentIntent);
             res.json({
                 client_secret: paymentIntent.client_secret
             });
