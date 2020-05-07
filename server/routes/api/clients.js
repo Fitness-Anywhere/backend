@@ -148,7 +148,6 @@ const createPaymentIntent = async (client, classToRegister) => {
             metadata: { 'client_id': newClient.id, 'class_id': classToRegister.id }
         });
 
-        console.log('client_sec: ', paymentIntent.client_secret);
         return paymentIntent.client_secret;
     } catch (error) {
         throw new Error('Error in payment intent');
