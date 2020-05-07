@@ -97,7 +97,7 @@ router.post('/:id/classes', async (req, res, next) => {
         // update DB
         const classRegistered = await Class.registerClient(req.params.id, class_id);
 
-        // get client secret
+        // create stripe pay intent and return secret
         const client_secret = await createPaymentIntent(req.client, classRegistered);
         
         // send client secret to FE
@@ -144,7 +144,8 @@ const createPaymentIntent = async (client, classToRegister) => {
             customer: newClient.stripe_account_id,
             transfer_data: {
                 destination: instructor.stripe_account_id,
-            }
+            },
+            metadata: { 'client_id': newClient.id, 'class_id': classToRegister.id }
         });
 
         console.log('client_sec: ', paymentIntent.client_secret);

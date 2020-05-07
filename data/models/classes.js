@@ -41,6 +41,11 @@ const findInstructor = class_id => (
         .first()
 )
 
+const addStripePaymentId = async (class_id, client_id, stripe_payment_id) => {
+    await db('class_clients').where({class_id, client_id}).update({ stripe_payment_id });
+    return db('class_clients').where({class_id, client_id}).select('stripe_payment_id').first();
+}
+
 module.exports = {
     findAll,
     findBy,
@@ -50,5 +55,6 @@ module.exports = {
     update,
     registerClient,
     findClients,
-    findInstructor
+    findInstructor,
+    addStripePaymentId
 }
