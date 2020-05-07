@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const Classes = require('../../../data/models/classes');
 
 router.post('/stripe', async (req, res, next) => {
     try {
@@ -25,9 +26,11 @@ router.post('/stripe', async (req, res, next) => {
     }
 });
 
-const handleSuccessfulPaymentIntent = (paymentIntent) => {
+const handleSuccessfulPaymentIntent = async (paymentIntent) => {
     // Fulfill the purchase.
   console.log('PaymentIntent: ' + JSON.stringify(paymentIntent));
+  const { client_id, class_id } = JSON.stringify(paymentIntent.metadata);
+  await Classes.addStripePaymentId(class_id, client_id, paymentIntent.id);
 }
 
 module.exports = router;
