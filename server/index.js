@@ -9,6 +9,10 @@ const errorMiddleware = require('./middleware/error');
 const server = express();
 server.use(helmet());
 server.use(cors());
+
+// stripe webhook needs to be before express.json()
+server.use('/api/webhooks', require('./routes/api/webhooks'));
+
 server.use(express.json());
 
 // server.get('/', (req, res) => res.send('API running'));
@@ -18,7 +22,6 @@ server.use('/api/auth/', require('./routes/api/auth'));
 server.use('/api/instructors', auth, require('./routes/api/instructors'));
 server.use('/api/clients', auth, require('./routes/api/clients'));
 server.use('/api/classes', auth, require('./routes/api/classes'));
-server.use('/api/webhooks', require('./routes/api/webhooks'));
 
 // DEPLOYMENT - Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
