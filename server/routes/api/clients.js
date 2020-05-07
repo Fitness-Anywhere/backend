@@ -144,8 +144,7 @@ const createPaymentIntent = async (client, classToRegister) => {
             customer: newClient.stripe_account_id,
             transfer_data: {
                 destination: instructor.stripe_account_id,
-            },
-            metadata: { 'client_id': newClient.id, 'class_id': classToRegister.id }
+            }
         });
 
         return paymentIntent.client_secret;
