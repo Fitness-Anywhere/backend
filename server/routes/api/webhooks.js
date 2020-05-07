@@ -1,6 +1,8 @@
 const router = require('express').Router();
 const Classes = require('../../../data/models/classes');
 
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 router.post('/stripe', async (req, res, next) => {
     try {
         const sig = req.headers['stripe-signature'];
