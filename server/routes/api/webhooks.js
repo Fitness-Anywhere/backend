@@ -18,7 +18,7 @@ router.post('/stripe', async (req, res, next) => {
         if (event.type === 'payment_intent.succeeded') {
             const paymentIntent = event.data.object;
             console.log('Payment intent: ', paymentIntent);
-            handleSuccessfulPaymentIntent(paymentIntent);
+            await handleSuccessfulPaymentIntent(paymentIntent);
         }
 
         res.json({received: true});

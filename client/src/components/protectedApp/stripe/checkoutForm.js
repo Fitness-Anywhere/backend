@@ -49,6 +49,7 @@ export default function CheckoutForm() {
           payment_method: {
             card: elements.getElement(CardElement)
           },
+          metadata: { 'client_id': id, 'class_id': c_id }
         });
     
         if (result.error) {
