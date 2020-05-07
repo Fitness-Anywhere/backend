@@ -16,17 +16,11 @@ export default function CheckoutForm() {
   const elements = useElements();
   const { id, c_id } = useParams();
   //   console.log("params ", params);
-  //   const class_id = 21;
-
-  // useEffect(() => {
-    
-  // }, []);
 
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
-    //  const class_id = 21;
     //  try {
     //    const getData = await axiosWithAuth().get(
     //      `/api/clients/${params.id}/classes/${class_id}/payment`
@@ -41,11 +35,9 @@ export default function CheckoutForm() {
     axiosWithAuth()
       .post(`/api/clients/${id}/classes`, { class_id: c_id })
       .then(async (res) => {
-        console.log("res ", res);
-        //   dispatch({ type: "PROCCESSING_PAYMENT" });
+        dispatch({ type: "PROCCESSING_PAYMENT" });
 
-        // setClient(res.data.client_secret);
-        const client = res.data.client_secret;
+        const clientSecret = res.data.client_secret;
 
         if (!stripe || !elements) {
           // Stripe.js has not yet loaded.
@@ -53,15 +45,11 @@ export default function CheckoutForm() {
           return;
         }
     
-        const result = await stripe.confirmCardPayment(client, {
+        const result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
-            card: elements.getElement(CardElement),
-            billing_details: {
-              name: "Jenny Rosen",
-            },
+            card: elements.getElement(CardElement)
           },
         });
-        console.log("result here ", result);
     
         if (result.error) {
           // Show error to your customer (e.g., insufficient funds)
