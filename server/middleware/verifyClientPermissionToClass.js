@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
 
         if (req.client) { // logged as a client means client needs to be registered in the class passes through param
             const clientClass = await Client.findClassById(id, class_id);
-
+            console.log(clientClass);
             if (!clientClass) {
                 return res.status(401).json({
                     errorMessage: 'Client is not registered in class passed in URL'

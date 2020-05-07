@@ -10,7 +10,7 @@ import CardSection from "./CardSection";
 
 export default function CheckoutForm() {
   const dispatch = useDispatch();
-  const [client, setClient] = useState("");
+  // const [client, setClient] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
@@ -18,19 +18,9 @@ export default function CheckoutForm() {
   //   console.log("params ", params);
   //   const class_id = 21;
 
-  useEffect(() => {
-    axiosWithAuth()
-      .get(`/api/clients/${id}/classes/${c_id}/payment`)
-      .then((res) => {
-        console.log("res ", res);
-        //   dispatch({ type: "PROCCESSING_PAYMENT" });
-
-        setClient(res.data.client_secret);
-      })
-      .catch((err) => {
-        console.log("err ", err);
-      });
-  }, []);
+  // useEffect(() => {
+    
+  // }, []);
 
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
@@ -47,38 +37,53 @@ export default function CheckoutForm() {
     //  }
     setIsProcessing(true);
     //  dispatch({ type: "PROCCESSING_PAYMENT" });
+    
+    axiosWithAuth()
+      .post(`/api/clients/${id}/classes`, { class_id: c_id })
+      .then(async (res) => {
+        console.log("res ", res);
+        //   dispatch({ type: "PROCCESSING_PAYMENT" });
 
-    if (!stripe || !elements) {
-      // Stripe.js has not yet loaded.
-      // Make sure to disable form submission until Stripe.js has loaded.
-      return;
-    }
+        // setClient(res.data.client_secret);
+        const client = res.data.client_secret;
 
-    const result = await stripe.confirmCardPayment(client, {
-      payment_method: {
-        card: elements.getElement(CardElement),
-        billing_details: {
-          name: "Jenny Rosen",
-        },
-      },
-    });
-    console.log("result here ", result);
+        if (!stripe || !elements) {
+          // Stripe.js has not yet loaded.
+          // Make sure to disable form submission until Stripe.js has loaded.
+          return;
+        }
+    
+        const result = await stripe.confirmCardPayment(client, {
+          payment_method: {
+            card: elements.getElement(CardElement),
+            billing_details: {
+              name: "Jenny Rosen",
+            },
+          },
+        });
+        console.log("result here ", result);
+    
+        if (result.error) {
+          // Show error to your customer (e.g., insufficient funds)
+          console.log(result.error.message);
+        } else {
+          // The payment has been processed!
+          if (result.paymentIntent.status === "succeeded") {
+            // Show a success message to your customer
+            // There's a risk of the customer closing the window before callback
+            // execution. Set up a webhook or plugin to listen for the
+            // payment_intent.succeeded event that handles any business critical
+            // post-payment actions.
+            setIsProcessing(false);
+            dispatch({ type: "PAYMENT_PROCCESSED" });
+          }
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
 
-    if (result.error) {
-      // Show error to your customer (e.g., insufficient funds)
-      console.log(result.error.message);
-    } else {
-      // The payment has been processed!
-      if (result.paymentIntent.status === "succeeded") {
-        // Show a success message to your customer
-        // There's a risk of the customer closing the window before callback
-        // execution. Set up a webhook or plugin to listen for the
-        // payment_intent.succeeded event that handles any business critical
-        // post-payment actions.
-        setIsProcessing(false);
-        dispatch({ type: "PAYMENT_PROCCESSED" });
-      }
-    }
+    
   };
 
   const cssClasses = isProcessing
