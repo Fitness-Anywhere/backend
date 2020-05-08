@@ -12,15 +12,16 @@ const ClientSingleClass = () => {
   const dispatch = useDispatch();
   const [currentClass, setCurrentClass] = useState();
 
+  const fetchClass = async () => {
+    const res = await axiosWithAuth().get(`/api/classes/${c_id}`);
+    setCurrentClass(res.data);
+  }
+
   useEffect(() => {
     dispatch({ type: "PROCCESSING_PAYMENT" });
     
-    (async () => {
-      const res = await axiosWithAuth().get(`/api/classes/${c_id}`);
-      setCurrentClass(res.data);
-    })();
-    
-  }, [c_id, dispatch]);
+    fetchClass();
+  }, []);
 
   return (
     <> { currentClass && (
