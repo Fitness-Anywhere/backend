@@ -11,10 +11,8 @@ import EditClass from "./instructor/EditClass";
 import InstructorProfile from "./instructor/InstructorProfile";
 
 const ProtectedMain = () => {
-  const { url } = useRouteMatch();
-
   return (
-    <div>
+    <>
       <Route exact path="/account/client/:id">
         <ClientHomePage />
       </Route>
@@ -42,7 +40,7 @@ const ProtectedMain = () => {
       <Route exact path={`/account/instructor/:id/edit/:c_id`}>
         <EditClass />
       </Route>
-    </div>
+    </>
   );
 };
 
