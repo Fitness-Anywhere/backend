@@ -1,20 +1,13 @@
+var dotenv = require('dotenv');
+dotenv.config();
 // Update with your config settings.
 
 module.exports = {
 
   development: {
-    client: 'sqlite3',
+    client: 'pg',
     useNullAsDefault: true,
-    connection: {
-      filename: './data/fitness-anywhere.db3'
-    },
-    // needed when using foreign keys
-    pool: {
-      afterCreate: (conn, done) => {
-        // runs after a connection is made to the sqlite engine
-        conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
-      },
-    },
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: "./data/migrations",
     },
