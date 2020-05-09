@@ -11,20 +11,18 @@ import EditClass from "./instructor/EditClass";
 import InstructorProfile from "./instructor/InstructorProfile";
 
 const ProtectedMain = () => {
-  const { url } = useRouteMatch();
-
   return (
-    <div>
+    <>
       <Route exact path="/account/client/:id">
         <ClientHomePage />
       </Route>
-      <Route exact path={`${url}/client/:id/:c_id/more-info`}>
+      <Route exact path={`/account/client/:id/:c_id/more-info`}>
         <ClientSingleClass />
       </Route>
-      <Route exact path={`${url}/client/:id/schedule`}>
+      <Route exact path={`/account/client/:id/schedule`}>
         <ClientProfile />
       </Route>
-      <Route exact path={`${url}/client/:id/:type/results`}>
+      <Route exact path={`/account/client/:id/:type/results`}>
         <ClientResults />
       </Route>
 
@@ -32,17 +30,17 @@ const ProtectedMain = () => {
         <InstructorHomePage />
       </Route>
 
-      <Route exact path={`${url}/instructor/:id/profile`}>
+      <Route exact path={`/account/instructor/:id/profile`}>
         <InstructorProfile />
       </Route>
 
-      <Route exact path={`${url}/instructor/:id/:c_id/more-info`}>
+      <Route exact path={`/account/instructor/:id/:c_id/more-info`}>
         <InstructorSingleClass />
       </Route>
-      <Route exact path={`${url}/instructor/:id/edit/:c_id`}>
+      <Route exact path={`/account/instructor/:id/edit/:c_id`}>
         <EditClass />
       </Route>
-    </div>
+    </>
   );
 };
 

@@ -3,8 +3,8 @@ const instructors = require('../seed-data/instructors');
 
 exports.seed = function(knex) {
   // Deletes ALL existing entries
-  return process.env.NODE_ENV 
-  ? knex.raw('TRUNCATE TABLE instructors CASCADE')
+  return process.env.NODE_ENV !== 'testing'
+  ? knex.raw('TRUNCATE TABLE instructors RESTART IDENTITY CASCADE')
   .then(function () {
     // Inserts seed entries
     return knex('instructors').insert(instructors);

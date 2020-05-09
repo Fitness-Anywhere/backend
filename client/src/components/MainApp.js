@@ -11,7 +11,7 @@ import PrivateRoute from "../private/PrivateRoute";
 
 const MainApp = () => {
   return (
-    <div>
+    <>
       <Route exact path="/">
         <Home />
       </Route>
@@ -29,7 +29,7 @@ const MainApp = () => {
 
       <PrivateRoute path="/account" component={ProtectedMain} />
       <Footer />
-    </div>
+    </>
   );
 };
 
