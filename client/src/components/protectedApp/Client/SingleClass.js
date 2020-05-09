@@ -1,16 +1,18 @@
 import React from "react";
-import { Link, useRouteMatch } from "react-router-dom";
+import { Link, useRouteMatch, useParams } from "react-router-dom";
 import { convertingTime } from "../../../helperFunctions/convertingTime";
 
 const InstructorCardClass = ({ cls, joinClass }) => {
-  const { id, duration, image_url, name, price, start_time } = cls;
+  const { duration, image_url, name, price, start_time } = cls;
+  const class_id = cls.id;
   const { url } = useRouteMatch();
+  const { id } = useParams();
 
   const time = convertingTime(start_time);
 
   return (
     <div className="InstructorCardClass">
-      <Link to={`${url}/${id}/more-info`}>
+      <Link to={`/account/client/${id}/${class_id}/more-info`}>
         <div className="InstructorCardClass-img">
           <img src={image_url} alt="doing yoga" />
         </div>

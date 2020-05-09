@@ -34,10 +34,9 @@ const ClientSingleClass = () => {
                 <img src={currentClass.image_url} alt={currentClass.name} />
               </div>
               <div className="right-side">
-                <p className="name">
-                  Class name:
-                  <span>{currentClass.name}</span>
-                </p>
+                <h2 className="name">
+                  {currentClass.name}
+                </h2>
                 <p className="address">
                   Location:
                   <span>{currentClass.location}</span>
@@ -66,20 +65,15 @@ const ClientSingleClass = () => {
                   Class duration:
                   <span>{currentClass.duration} mins</span>
                 </p>
-                <div id="buy-btn">
-                  <ClientModel data={currentClass} />
-                </div>
               </div>
             </div>
             <div className="bottom-description">
               <div className="InstructorSingleClass-description">
-                <h2>About the class</h2>
-                <span>description</span>
-
+                <h4>description</h4>
                 <p>{currentClass.description}</p>
               </div>
-              <div className="goback-btn">
-                <Link to={`/account/client/${id}`}>Go back</Link>
+              <div id="buy-btn">
+                <ClientModel data={currentClass} />
               </div>
             </div>
           </div>
@@ -87,6 +81,9 @@ const ClientSingleClass = () => {
         <div className="googleMap-wrapper">
           <GoogleMap location={currentClass.location} />
         </div>
+        {/* <div className="goback-btn">
+          <Link to={`/account/client/${id}`}>Go back</Link>
+        </div> */}
       </> 
     )}
     </>
