@@ -31,6 +31,10 @@
         @include flex(center);
         flex-direction: column;
 
+        h2 {
+          margin: 0 0 .8rem;
+        }
+
         p {
           margin: 0.5rem 0;
           font-weight: bold;
@@ -46,18 +50,21 @@
 
     .bottom-description {
       margin-bottom: 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
       .InstructorSingleClass-description {
         border-top: 1px solid grey;
         width: 80%;
-        margin: 4rem auto 3rem;
+        margin: 2rem auto;
         padding: 2rem 0;
 
         h2 {
           margin: 0 0 2rem;
         }
 
-        span {
+        h4 {
           font-weight: bold;
           text-transform: uppercase;
           display: inline-block;
@@ -69,24 +76,24 @@
           font-size: 1.1rem;
         }
       }
-
-      .goback-btn {
-        @include flex(center);
-        margin-bottom: 2rem;
-
-        a {
-          text-decoration: none;
-          padding: 0.5rem 2rem;
-          display: inline-block;
-          text-align: center;
-          background: $main-color;
-          color: $white;
-          border-radius: 4px;
-          text-transform: uppercase;
-          font-size: 1rem;
-        }
-      }
     }
+  }
+}
+
+.goback-btn {
+  @include flex(center);
+  margin-bottom: 2rem;
+
+  a {
+    text-decoration: none;
+    padding: 0.5rem 2rem;
+    display: inline-block;
+    text-align: center;
+    background: $main-color;
+    color: $white;
+    border-radius: 4px;
+    text-transform: uppercase;
+    font-size: 1rem;
   }
 }
 
@@ -103,9 +110,7 @@
 //// buy btn
 
 #buy-btn {
-  margin-top: 2rem;
   button {
-    color: red;
     padding: 0.4rem 2rem;
     color: $white;
     background: $main-color;
