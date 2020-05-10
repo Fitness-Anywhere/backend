@@ -1,12 +1,14 @@
 const router = require('express').Router();
 const Class = require('../../../data/models/classes');
 // middleware
+const auth = require('../../middleware/auth');
 const verifyClassId = require('../../middleware/verifyClassId');
 
 router.use('/:class_id', verifyClassId);
 
 // @route   GET /api/classes
 // @desc    Return all classes
+// @access  Public
 router.get('/', async (req, res, next) => {
     try {
         const classes = await Class.findAll();
@@ -18,6 +20,7 @@ router.get('/', async (req, res, next) => {
 
 // @route   GET /api/classes/:id
 // @desc    Return specific class
+// @access  Public
 router.get('/:class_id', async (req, res, next) => {
     try {
         // req.class is set in verifyClassId middleware
@@ -27,8 +30,12 @@ router.get('/:class_id', async (req, res, next) => {
     }
 });
 
+// Auth middleware
+router.use('/', auth);
+
 // @route   GET /api/classes/:id/instructor
 // @desc    Return instructor of a specific class
+// @access   Private
 router.get('/:class_id/instructor', async (req, res, next) => {
     try {
         // req.class is set in verifyClassId middleware
@@ -41,6 +48,7 @@ router.get('/:class_id/instructor', async (req, res, next) => {
 
 // @route   GET /api/classes/:id/instructor
 // @desc    Return clients of a specific class
+// @access   Private
 router.get('/:class_id/clients', async (req, res, next) => {
     try {
         // req.class is set in verifyClassId middleware
