@@ -3,6 +3,7 @@ const router = require('express').Router();
 const Instructor = require('../../../data/models/instructors');
 const Class = require('../../../data/models/classes');
 // middlewares
+const auth = require('../../middleware/auth');
 const verifyId = require('../../middleware/verifyInstructorId');
 const verifyClassId = require('../../middleware/verifyClassId');
 const verifyClassFields = require('../../middleware/verifyClassRequiredFields');
@@ -11,6 +12,7 @@ const verifyInstructorToken = require('../../middleware/verifyInstructorToken');
 
 // @route   GET /api/instructors
 // @desc    Return all instructors
+// @access  Public
 router.get('/', async (req, res, next) => {
     try {
         const instructors = await Instructor.findAll();
@@ -22,9 +24,17 @@ router.get('/', async (req, res, next) => {
 
 // @route   GET /api/instructors/:id
 // @desc    Return an instructor by id
+// @access  Public
 router.get('/:id', async (req, res, next) => {
     try {
         const instructor = await Instructor.findById(req.params.id);
+
+        if (!instructor) {
+            return res.status(401).json({
+                errorMessage: 'Invalid ID'
+            });
+        }
+        
         res.json(instructor);
     } catch (error) {
         next(error);
@@ -32,15 +42,19 @@ router.get('/:id', async (req, res, next) => {
 });
 
 // Middlewares
-router.use('/:id/classes/:class_id', verifyClassId);
-router.use('/:id/classes/:class_id', verifyInstructorPermissionToClass);
+router.use('/', auth);
 // Middleware that guarantees user logged in is an instructor
 router.use('/', verifyInstructorToken);
 // Verify if its a valid ID and if it matches with logged instructor ID
 router.use('/:id', verifyId);
+// Verify if class_id is valid
+router.use('/:id/classes/:class_id', verifyClassId);
+// Verify if class is one of the logged instructor's class
+router.use('/:id/classes/:class_id', verifyInstructorPermissionToClass);
 
 // @route   DELETE /api/instructors/:id
 // @desc    Delete a instructor
+// @access  Private
 router.delete('/:id', async (req, res, next) => {
     try {
         await Instructor.remove(req.params.id);
@@ -54,6 +68,7 @@ router.delete('/:id', async (req, res, next) => {
 
 // @route   PUT /api/instructors/:id
 // @desc    Update instructor
+// @access  Private
 router.put('/:id', async (req, res, next) => {
     try {
         const { id } = req.params;
@@ -82,6 +97,7 @@ router.put('/:id', async (req, res, next) => {
 
 // @route   GET /api/instructors/:id/classes
 // @desc    Return all classes by instructor
+// @access  Private
 router.get('/:id/classes', async (req, res, next) => {
     try {
         const classes = await Instructor.findClasses(req.params.id);
@@ -93,6 +109,7 @@ router.get('/:id/classes', async (req, res, next) => {
 
 // @route   POST /api/instructors/:id/classes
 // @desc    Add a new class
+// @access  Private
 router.post('/:id/classes', verifyClassFields, async (req, res, next) => {
     try {
         const registeredClass = await Class.add({
@@ -107,6 +124,7 @@ router.post('/:id/classes', verifyClassFields, async (req, res, next) => {
 
 // @route   GET /api/instructors/:id/classes/:class_id
 // @desc    Return an specific class if instructor is the instructor of the class
+// @access  Private
 router.get('/:id/classes/:class_id', async (req, res, next) => {
     try {
         // req.class is set in verifyClassId middleware
@@ -118,6 +136,7 @@ router.get('/:id/classes/:class_id', async (req, res, next) => {
 
 // @route   PUT /api/instructors/:id/classes/:class_id
 // @desc    Edit a class
+// @access  Private
 router.put('/:id/classes/:class_id', verifyClassFields, async (req, res, next) => {
     try {
         const { id, class_id } = req.params;
@@ -136,6 +155,7 @@ router.put('/:id/classes/:class_id', verifyClassFields, async (req, res, next) =
 
 // @route   DELETE /api/instructors/:id/classes/:class_id
 // @desc    Delete a class
+// @access  Private
 router.delete('/:id/classes/:class_id', async (req, res, next) => {
     try {
         const { class_id } = req.params;
@@ -152,6 +172,7 @@ router.delete('/:id/classes/:class_id', async (req, res, next) => {
 
 // @route   GET /api/instructors/:id/classes/:class_id
 // @desc    Return clients of an specific class
+// @access  Private
 router.get('/:id/classes/:class_id/clients', async (req, res, next) => {
     try {
         const { class_id } = req.params;

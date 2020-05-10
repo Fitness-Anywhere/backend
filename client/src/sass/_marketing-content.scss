@@ -1,0 +1,132 @@
+.marketing-Content {
+  //   border: 1px solid red;
+  max-width: $main-width;
+  margin: 7rem auto;
+
+  .sub-titles {
+    text-align: center;
+    //  border: 1px solid blue;
+    margin-bottom: 4rem;
+
+    h3 {
+      color: $main-color;
+      text-transform: uppercase;
+      font-size: 1.4rem;
+    }
+
+    h1 {
+      text-transform: capitalize;
+      margin: 1rem 0 2rem;
+      font-size: 2rem;
+    }
+  }
+
+  .marketing-content-options {
+    display: flex;
+    justify-content: center;
+    padding: 1rem 0;
+    .content-options-img {
+      // border: 1px solid red;
+      position: relative;
+      border-radius: 50%;
+      margin: 0 1rem;
+      width: 200px;
+      height: 200px;
+
+      img {
+        width: 100%;
+        height: 100%;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      span {
+        position: absolute;
+        height: 100%;
+        border-radius: 50%;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        top: 50%;
+        left: 50%;
+        align-items: center;
+        background: rgba(0, 0, 0, 0.4);
+        z-index: 10;
+        font-size: $main-size;
+        font-weight: bold;
+        transform: translate(-50%, -50%);
+        //   margin-bottom: 4rem;
+        color: $white;
+      }
+    }
+  }
+}
+
+.marketing-content-info {
+  //   border: 1px solid red;
+  width: 100%;
+  height: 60vh;
+  margin: 0 auto 7rem;
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+
+  &::after {
+    position: absolute;
+    content: "";
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../img/yoga1.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    //  background-position: center;
+    z-index: -1;
+  }
+
+  .content-info-wrapper {
+    color: $white;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+      font-size: $main-size;
+      &:first-child {
+        //   color: red;
+        margin-bottom: 1.5rem;
+        font-size: 1.7rem;
+      }
+    }
+  }
+}
+
+.Carousel-wrapper {
+  h1 {
+    text-align: center;
+    margin: 1rem 0 2rem;
+    font-size: 2rem;
+    //  color: $main-color;
+  }
+  h4 {
+    text-align: center;
+    color: $main-color;
+    text-transform: uppercase;
+    font-size: 1.4rem;
+  }
+}
+
+#Carousel {
+  width: 400px;
+  //   border: 1px solid red;
+  //   height: 300px;
+  margin: 0 auto 7rem;
+
+  img {
+    width: 400px;
+    height: 400px;
+    object-fit: cover;
+  }
+}
