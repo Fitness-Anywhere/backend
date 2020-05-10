@@ -25,7 +25,7 @@ export default function ClientModel({ data }) {
   return (
     <div id="ClientModel">
       <div id="add-to-cart-btn">
-        <Button onClick={handleClickOpen}>add to cart</Button>
+        <Button onClick={handleClickOpen}>Join class</Button>
       </div>
 
       <Dialog
