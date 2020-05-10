@@ -16,6 +16,10 @@ const Footer = () => {
           </Link>
         </nav>
       </footer>
+      <p className="developed">
+        Fitness Anywhere was developed by <span>Anthony Amaro</span> and{" "}
+        <span>Fabricio Bezerra</span>.
+      </p>
     </div>
   );
 };

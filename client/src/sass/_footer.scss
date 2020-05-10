@@ -1,6 +1,6 @@
 .Footer {
-  height: 15vh;
-  background: $black;
+  //   height: 15vh;
+  background: #111;
   color: $white;
   align-items: center;
   padding: 1rem 0;
@@ -8,15 +8,41 @@
   footer {
     width: $main-width;
     margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
     text-align: center;
+    //  height: 5vh;
+    //  border: 1px solid red;
+    padding: 2rem 1rem;
 
     h1 {
-      margin: 2rem 0;
+      // margin: 2rem 0;
+      font-weight: normal;
+      text-transform: capitalize;
+      font-size: 2.5rem;
     }
 
-    a {
-      font-size: 1.5rem;
-      color: $white;
+    nav {
+      // text-align: center;
+      a {
+        font-size: 1.5rem;
+        color: $white;
+
+        &:hover {
+          color: $main-color;
+        }
+      }
+    }
+  }
+
+  p {
+    text-align: center;
+    margin-top: 2.5rem;
+    font-weight: lighter;
+    font-size: 0.9rem;
+
+    span {
+      font-weight: normal;
     }
   }
 }
