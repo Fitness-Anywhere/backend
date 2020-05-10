@@ -73,7 +73,7 @@ function Login() {
   };
   return (
     <div className="Login">
-      <h1>Log in</h1>
+      <h1>Fitness Anywhere</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="username">
           <input
@@ -126,6 +126,14 @@ function Login() {
           {loading ? "Submitting..." : "Login"}
         </button>
       </form>
+
+      {/**
+        <div className="option-btn">
+        <span>
+          Don't have an account? <button>Sign up</button>
+        </span>
+      </div>
+      */}
     </div>
   );
 }

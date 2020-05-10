@@ -1,21 +1,23 @@
 .Login {
   //   border: 1px solid red;
   //   width: $main-width;
-  margin: 3rem auto 4rem;
+  margin: 3rem auto;
   //   height: 100%;
 
   h1 {
     text-align: center;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
+    font-size: 1.8rem;
+    margin-top: -2rem;
   }
 
   form {
-    border: 1px solid rgb(201, 200, 200);
+    //  border: 1px solid rgb(201, 200, 200);
     border-radius: 4px;
 
-    width: 480px;
+    width: 450px;
     margin: 0 auto;
-    padding: 3rem 2rem 5rem;
+    //  padding: 3rem 2rem;
 
     label {
       // margin-bottom: 0.7rem;
@@ -26,7 +28,7 @@
         display: block;
         width: 100%;
         padding: 0.8rem 0.4rem;
-        margin-bottom: 1.8rem;
+        margin-bottom: 1rem;
         border: none;
         border-radius: 4px;
         border: 1px solid rgb(201, 200, 200);
@@ -63,7 +65,9 @@
 
     .Login-error {
       // border: 1px solid red;
+      font-size: 0.8rem;
       width: 300px;
+      font-weight: $sm-font;
       color: red;
       position: absolute;
       top: 3.2rem;
@@ -71,14 +75,15 @@
     }
 
     button {
-      padding: 0.4rem 2rem;
+      padding: 0.8rem 2rem;
       background: $main-color;
-
+      width: 100%;
       color: $white;
       border: none;
+      font-weight: 300;
       border-radius: 4px;
       font-size: $main-size;
-      margin-top: 3rem;
+      margin-top: 2rem;
       cursor: pointer;
     }
 
@@ -89,4 +94,20 @@
   }
 
   //  border: 1px solid red;
+
+  .option-btn {
+    //  border: 1px solid red;
+    text-align: center;
+    margin-top: 1.5rem;
+    color: grey;
+    font-weight: $sm-font;
+    //  margin-bottom: -1rem;
+
+    button {
+      border: none;
+      color: $main-color;
+      font-weight: 300;
+      outline: none;
+    }
+  }
 }

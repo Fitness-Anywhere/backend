@@ -7,6 +7,17 @@ export const credentialReducer = (state = initialValues, action) => {
         ...state,
         loading: true,
       };
+    case "CREATED_ACCOUNT_SUCCESSFULLY":
+      return {
+        ...state,
+        loading: false,
+        createdAccountSuccessfully: true,
+      };
+    case "RESET_BACK_TO_DEFAULT":
+      return {
+        ...state,
+        createdAccountSuccessfully: false,
+      };
     case "SOMETHING_WENT_WRONG":
       return {
         ...state,

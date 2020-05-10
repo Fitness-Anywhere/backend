@@ -49,7 +49,8 @@ function SignUp() {
         .post("/api/auth/instructors/register", newValues)
         .then((res) => {
           reset(initialValues);
-          history.push("/login");
+          //  history.push("/login");
+          dispatch({ type: "CREATED_ACCOUNT_SUCCESSFULLY" });
         })
         .catch((err) => {
           console.log(err.response.data.errorMessage);
@@ -78,7 +79,7 @@ function SignUp() {
 
   return (
     <div className="Login">
-      <h1>Sign up</h1>
+      <h1>Create your account</h1>
       <form onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="username">
           <input

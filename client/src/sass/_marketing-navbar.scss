@@ -19,18 +19,15 @@
       a {
         //   border: 1px solid red;
         margin-right: 1rem;
-        padding: 0.2rem 0.4rem;
+        text-decoration: none;
+        //   padding: 0.2rem 0.4rem;
+        padding: 0 0.5rem;
         color: $white;
 
         text-transform: uppercase;
         font-size: 1rem;
 
         &:first-child {
-          //  color: blue;
-          padding-top: 0.7rem;
-          font-weight: bold;
-          padding: 0.6rem 1rem;
-          //  background: $white;
           margin: 0;
         }
 
@@ -53,8 +50,13 @@
   #model-links-btn {
     button {
       color: $white;
+      border: none;
+      outline: none;
+      background: none;
+      // font-size: 1rem;
+      padding: 0 0.7rem;
 
-      font-size: 1rem;
+      text-transform: uppercase;
       // border: 1px soli red;
 
       &:hover {
@@ -64,12 +66,41 @@
   }
 }
 
-.home-modal-container {
-  #close-credential-modal {
+.option-btn {
+  //  border: 1px solid red;
+  text-align: center;
+
+  margin: -1.5rem 0 2rem;
+  color: grey;
+  font-weight: $sm-font;
+  //  margin-bottom: -1rem;
+
+  span {
     button {
-      &:hover {
-        background: none;
-      }
+      border: none;
+      color: $main-color;
+      font-weight: 300;
+      outline: none;
+    }
+  }
+}
+
+#home-modal-container {
+  //   border: 1px solid red;
+  padding: -2rem 0;
+}
+
+#close-credential-modal {
+  display: flex;
+  justify-content: flex-end;
+  button {
+    border: none;
+    outline: none;
+    //  font-size: 0.6rem;
+    //  margin: 0;
+    padding-top: 1rem;
+    &:hover {
+      background: none;
     }
   }
 }
