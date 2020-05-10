@@ -19,9 +19,9 @@ server.use(express.json());
 
 // Define routes
 server.use('/api/auth/', require('./routes/api/auth'));
-server.use('/api/instructors', auth, require('./routes/api/instructors'));
+server.use('/api/instructors', require('./routes/api/instructors'));
+server.use('/api/classes', require('./routes/api/classes'));
 server.use('/api/clients', auth, require('./routes/api/clients'));
-server.use('/api/classes', auth, require('./routes/api/classes'));
 
 // DEPLOYMENT - Serve static assets if in production
 if (process.env.NODE_ENV === 'production') {
