@@ -52,6 +52,10 @@
       // font-weight: bold;
     }
 
+    .card-section {
+      width: 100%;
+    }
+
     #close-btn {
       button {
         color: grey;
@@ -84,7 +88,10 @@
 
     margin-bottom: 2rem;
   }
-}
+
+  .card-section {
+    width: 100%;
+  }
 
 .checkoutForm {
   //   border: 1px solid red;
@@ -93,6 +100,7 @@
   label {
     display: block;
   }
+  
   .confirm-btn {
     display: inline-block;
     margin-top: 1.5rem;
