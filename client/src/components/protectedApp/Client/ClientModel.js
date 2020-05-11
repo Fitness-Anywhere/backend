@@ -51,9 +51,7 @@ export default function ClientModel({ data }) {
                 </div>
 
                 <div id="close-btn">
-                  <Button onClick={handleClose} autoFocus>
-                    close
-                  </Button>
+                  <Button onClick={handleClose}>close</Button>
                 </div>
               </div>
               <div className="show-payment-info-img">
@@ -66,9 +64,7 @@ export default function ClientModel({ data }) {
         {isProccessing && (
           <DialogActions>
             <div id="close-success-payment">
-              <Button onClick={handleClose} autoFocus>
-                close
-              </Button>
+              <button onClick={handleClose}>close</button>
             </div>
           </DialogActions>
         )}

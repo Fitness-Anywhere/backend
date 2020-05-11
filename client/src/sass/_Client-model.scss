@@ -54,13 +54,18 @@
 
     #close-btn {
       button {
-        color: $black;
+        color: grey;
+        font-size: 0.7rem;
+        outline: none;
+        //   font-weight: 3;
+        //   border: 1px solid red;
+
         //   font-weight: normal;
         //   text-transform: capitalize;
 
-        //   &:hover {
-        //     background: none;
-        //   }
+        &:hover {
+          background: none;
+        }
       }
     }
   }
@@ -81,15 +86,24 @@
   }
 }
 
-.confirm-btn {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.6rem 1.4rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  color: $white;
-  background: $main-color;
-  cursor: pointer;
+.checkoutForm {
+  //   border: 1px solid red;
+  //   color: grey;
+
+  label {
+    display: block;
+  }
+  .confirm-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    color: $white;
+    background: $main-color;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
 }
 
 .proccessing-payment-btn {
