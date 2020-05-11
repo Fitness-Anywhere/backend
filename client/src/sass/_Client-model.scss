@@ -58,18 +58,13 @@
 
     #close-btn {
       button {
-        color: grey;
-        font-size: 0.7rem;
-        outline: none;
-        //   font-weight: 3;
-        //   border: 1px solid red;
-
+        color: $black;
         //   font-weight: normal;
         //   text-transform: capitalize;
 
-        &:hover {
-          background: none;
-        }
+        //   &:hover {
+        //     background: none;
+        //   }
       }
     }
   }
@@ -93,14 +88,6 @@
     width: 100%;
   }
 
-.checkoutForm {
-  //   border: 1px solid red;
-  //   color: grey;
-
-  label {
-    display: block;
-  }
-  
   .confirm-btn {
     display: inline-block;
     margin-top: 1.5rem;
@@ -112,9 +99,4 @@
     cursor: pointer;
     text-transform: capitalize;
   }
-}
-
-.proccessing-payment-btn {
-  background: lighten($main-color, 20%);
-  cursor: not-allowed;
 }
