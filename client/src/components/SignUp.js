@@ -65,7 +65,8 @@ function SignUp() {
         .post("/api/auth/clients/register", newValues)
         .then((res) => {
           reset(initialValues);
-          history.push("/login");
+          //  history.push("/login");
+          dispatch({ type: "CREATED_ACCOUNT_SUCCESSFULLY" });
         })
         .catch((err) => {
           console.log(err.response.data.errorMessage);

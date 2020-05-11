@@ -36,6 +36,7 @@ function Login() {
           localStorage.setItem("id", JSON.stringify(res.data.id));
           history.push(`/account/instructor/${res.data.id}`);
           dispatch({ type: "USER_LOGGED_IN_SUCCESSFULLY" });
+
           reset(initialValues);
         })
         .catch((err) => {
@@ -68,9 +69,9 @@ function Login() {
     }
   };
 
-  const testing = () => {
-    console.log("clicking...");
-  };
+  //   const testing = () => {
+  //     dispatch({ type: "RESET_BACK_TO_DEFAULT" });
+  //   };
   return (
     <div className="Login">
       <h1>Fitness Anywhere</h1>
@@ -118,7 +119,7 @@ function Login() {
         </label>
 
         <button
-          onClick={testing}
+          //  onClick={testing}
           type="submit"
           disabled={loading}
           className={loading ? "submitting" : ""}

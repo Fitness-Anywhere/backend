@@ -35,6 +35,7 @@ export const credentialReducer = (state = initialValues, action) => {
       return {
         ...state,
         loading: false,
+        createdAccountSuccessfully: false,
       };
     case "ERROR_LOGING_IN":
       return {
