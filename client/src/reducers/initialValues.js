@@ -1,6 +1,7 @@
 export const initialValues = {
   addClassSuccessfull: false,
   addClassError: false,
+  createdAccountSuccessfully: false,
   clientID: 0,
   instructorID: 0,
   instructorName: "",

@@ -31,7 +31,7 @@ export default function CheckoutForm() {
     //  }
     setIsProcessing(true);
     //  dispatch({ type: "PROCCESSING_PAYMENT" });
-    
+
     axiosWithAuth()
       .post(`/api/clients/${id}/classes`, { class_id: c_id })
       .then(async (res) => {
@@ -44,13 +44,15 @@ export default function CheckoutForm() {
           // Make sure to disable form submission until Stripe.js has loaded.
           return;
         }
-    
+
         const result = await stripe.confirmCardPayment(clientSecret, {
           payment_method: {
-            card: elements.getElement(CardElement)
-          }
+            card: elements.getElement(CardElement),
+          },
         });
-    
+
+        console.log(result);
+
         if (result.error) {
           // Show error to your customer (e.g., insufficient funds)
           console.log(result.error.message);
@@ -62,6 +64,7 @@ export default function CheckoutForm() {
             // execution. Set up a webhook or plugin to listen for the
             // payment_intent.succeeded event that handles any business critical
             // post-payment actions.
+
             setIsProcessing(false);
             dispatch({ type: "PAYMENT_PROCCESSED" });
           }
@@ -70,8 +73,6 @@ export default function CheckoutForm() {
       .catch((err) => {
         console.log(err);
       });
-
-    
   };
 
   const cssClasses = isProcessing
@@ -79,7 +80,7 @@ export default function CheckoutForm() {
     : "confirm-btn";
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className="checkoutForm">
       <CardSection />
       <button disabled={isProcessing} className={cssClasses}>
         {isProcessing ? "proccesing..." : "confirm payment"}

@@ -52,6 +52,10 @@
       // font-weight: bold;
     }
 
+    .card-section {
+      width: 100%;
+    }
+
     #close-btn {
       button {
         color: $black;
@@ -79,20 +83,20 @@
 
     margin-bottom: 2rem;
   }
-}
 
-.confirm-btn {
-  display: inline-block;
-  margin-top: 1.5rem;
-  padding: 0.6rem 1.4rem;
-  font-size: 1rem;
-  border-radius: 4px;
-  color: $white;
-  background: $main-color;
-  cursor: pointer;
-}
+  .card-section {
+    width: 100%;
+  }
 
-.proccessing-payment-btn {
-  background: lighten($main-color, 20%);
-  cursor: not-allowed;
+  .confirm-btn {
+    display: inline-block;
+    margin-top: 1.5rem;
+    padding: 0.6rem 1.4rem;
+    font-size: 1rem;
+    border-radius: 4px;
+    color: $white;
+    background: $main-color;
+    cursor: pointer;
+    text-transform: capitalize;
+  }
 }
