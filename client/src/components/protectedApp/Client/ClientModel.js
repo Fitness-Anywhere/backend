@@ -35,6 +35,13 @@ export default function ClientModel({ data }) {
         aria-describedby="alert-dialog-description"
       >
         <DialogContent>
+          {isProccessing && (
+            <DialogActions>
+              <div id="close-success-payment">
+                <button onClick={handleClose}>x</button>
+              </div>
+            </DialogActions>
+          )}
           {isProccessing ? (
             <div className="success-payment">
               <div className="success-icon">
@@ -61,13 +68,10 @@ export default function ClientModel({ data }) {
             </div>
           )}
         </DialogContent>
-        {isProccessing && (
-          <DialogActions>
-            <div id="close-success-payment">
-              <button onClick={handleClose}>close</button>
-            </div>
-          </DialogActions>
-        )}
+
+        <div id="power-by-stripe">
+          <p className="power-by">Power by Stripe</p>
+        </div>
       </Dialog>
     </div>
   );
