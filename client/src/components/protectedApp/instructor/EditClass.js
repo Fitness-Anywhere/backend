@@ -43,10 +43,8 @@ const EditClass = () => {
   const [img, setImg] = useState("");
   const classes = useStyles();
 
-  const [selectedTime, setSelectedTime] = useState(getTime);
-  const [selectedDate, setSelectedDate] = useState(
-    new Date("2014-08-18T21:11:54")
-  );
+  const [selectedTime, setSelectedTime] = useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
 
   //   GET /api/instructors/:id/classes/:class_id
   useEffect(() => {
@@ -118,6 +116,7 @@ const EditClass = () => {
       description,
       image_url: img,
     };
+    console.log("new values ", newValues);
 
     //   /api/instructors/:id/classes/:class_id
     axiosWithAuth()
