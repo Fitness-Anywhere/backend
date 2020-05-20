@@ -1,5 +1,5 @@
 .Content {
-  width: $main-width;
+  width: $width-content;
   margin: 6rem auto;
   //   border: 1px solid blue;
   position: relative;
@@ -37,7 +37,7 @@
 
 .AddClassesForm {
   //   border: 1px solid red;
-  width: $main-width;
+  width: $width-content;
   margin: 0 auto;
   //   height: 30vh;
   display: flex;
@@ -60,7 +60,7 @@
       .div-two,
       .div-three {
         //   border: 1px solid red;
-        width: 30%;
+        width: 28%;
       }
       // div {
       //   border: 1px solid blue;

@@ -1,9 +1,11 @@
 .ClientDisplayClasses {
   h3 {
     font-size: 1.6rem;
+    //  text-align: center;
   }
-  width: $main-width;
+  width: $width-content;
   margin: 5rem auto;
+  //   border: 1px solid red;
   .ClientDisplayClasses-wrapper {
     margin-top: 3rem;
     @include flex(center);

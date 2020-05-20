@@ -1,6 +1,7 @@
 .DisplayInstructorClasses {
-  width: $main-width;
+  width: $width-content;
   margin: 2rem auto 5rem;
+  //   border: 1px solid red;
   @include flex(center);
   flex-wrap: wrap;
 

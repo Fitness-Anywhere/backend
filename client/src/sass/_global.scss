@@ -20,11 +20,13 @@ select {
 // }
 
 a {
-  text-decoration: none;
-}
-
-a {
   font-size: 1.3rem;
+  text-decoration: none;
+  display: inline-block;
+
+  &:hover {
+    text-decoration: none;
+  }
 }
 
 input {
