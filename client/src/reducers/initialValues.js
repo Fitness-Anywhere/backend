@@ -18,6 +18,8 @@ export const initialValues = {
 
   // credential reducer
   createdSuccessfully: "",
+
+  homepageClasses: [],
 };
 
 export const credentialValues = {

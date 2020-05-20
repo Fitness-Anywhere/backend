@@ -1,30 +1,54 @@
-import React from "react";
-import sample from "../img/yoga.jpg";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import ContentCarousel from "./ContentCarausel";
+import ContentClassImgs from "./ContentClassImgs";
+import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Content = () => {
+  const dispatch = useDispatch();
+  const { homepageClasses } = useSelector((state) => state.homepageReducer);
+
+  useEffect(() => {
+    dispatch({ type: "FETCHING_HOMEPAGE_CLASSES" });
+    axiosWithAuth()
+      .get("/api/classes")
+      .then((res) => {
+        dispatch({ type: "SAVING_HOMEPAGE_CLASSES", payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch({
+          type: "HOMEPAGE_CLASS_ERROR",
+          payload: err.response.data.errorMessage,
+        });
+      });
+  }, []);
   return (
     <div>
       <div className="marketing-Content">
         <div className="sub-titles">
+          {/**
+          <h3>why chose us?</h3>
+         */}
           <h3>why chose us?</h3>
           <h1>what we can offer</h1>
         </div>
         <div className="marketing-content-options">
-          <div className="content-options-img">
-            <img src={sample} alt="classes options" />
-            <span>class name</span>
-          </div>
-          <div className="content-options-img">
-            <img src={sample} alt="classes options" />
-            <span>class name</span>
-          </div>
-          <div className="content-options-img">
-            <img src={sample} alt="classes options" />
-            <span>class name</span>
-          </div>
+          {homepageClasses.map((cls) => (
+            <ContentClassImgs key={cls.id} cls={cls} />
+          ))}
         </div>
       </div>
+      <section className="about-our-web">
+        <h1>Work our at home</h1>
+        <p>
+          If you want more guidance or additional tools to get the most out of
+          all the content available, we also have low-cost, professionally
+          developed programs and meal plans to follow, monthly workout
+          challenges, and a growing list of advanced features for planning and
+          tracking your workouts.
+        </p>
+      </section>
       <div className="marketing-content-info">
         <div className="content-info-wrapper">
           <p className="visit">Visit our classes and you wont't regret it!</p>
