@@ -17,7 +17,7 @@ const ClientProfile = () => {
   /// testing
   useEffect(() => {
     axiosWithAuth()
-      .get(`api/clients/${id}`)
+      .get(`/api/clients/${id}`)
       .then((res) => {
         const fullName = {
           first_name: res.data.first_name,
