@@ -10,7 +10,12 @@
   //   border: 1px solid red;
   .ClientDisplayClasses-wrapper {
     margin-top: 3rem;
-    @include flex(center);
+    @include flex(space-between);
+
+    @media (max-width: $laptop) {
+      justify-content: center;
+    }
+
     flex-wrap: wrap;
   }
 }
