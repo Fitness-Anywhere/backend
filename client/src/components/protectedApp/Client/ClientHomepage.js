@@ -7,6 +7,7 @@ import Header from "./Header";
 import ClientDisplayClasses from "./ClientDisplayClasses";
 
 import MainStripe from "../stripe/MainStripe";
+import { Container } from "@material-ui/core";
 
 // toggle class for joined client
 
@@ -60,7 +61,9 @@ const ClientHomePage = () => {
     <div>
       <Navbar />
       <Header />
-      <ClientDisplayClasses allClasses={allClasses} joinClass={joinClass} />
+      <Container>
+        <ClientDisplayClasses allClasses={allClasses} joinClass={joinClass} />
+      </Container>
     </div>
   );
 };
