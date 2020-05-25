@@ -23,6 +23,7 @@ const SearchClassForm = () => {
         cla.start_time.includes(search) ||
         cla.location.includes(search)
     );
+    console.log("filtered ", filtered);
     dispatch({ type: "ADDING_SEARCH_CLASSES", payload: filtered });
     history.push(`${url}/${search}/results`);
     reset(initialValues);

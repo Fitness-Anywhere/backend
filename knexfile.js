@@ -1,34 +1,39 @@
-var dotenv = require('dotenv');
+var dotenv = require("dotenv");
 dotenv.config();
 // Update with your config settings.
 
 module.exports = {
-
   development: {
-    client: 'pg',
+    client: "pg",
     useNullAsDefault: true,
-    connection: process.env.DATABASE_URL,
+    connection: {
+      host: "localhost",
+      user: process.env.PG_USER,
+      password: process.env.PG_PASSWORD,
+      database: process.env.PG_DATABASE,
+      port: process.env.PG_PORT,
+    },
     migrations: {
       directory: "./data/migrations",
     },
     seeds: {
       directory: "./data/seeds",
-    }
+    },
   },
 
   production: {
-    client: 'pg',
+    client: "pg",
     connection: process.env.DATABASE_URL,
     pool: {
       min: 2,
-      max: 10
+      max: 10,
     },
     migrations: {
       directory: "./data/migrations",
     },
     seeds: {
       directory: "./data/seeds",
-    }
+    },
   },
 
   // db connection for testing
@@ -41,7 +46,7 @@ module.exports = {
     pool: {
       afterCreate: (conn, done) => {
         // runs after a connection is made to the sqlite engine
-        conn.run('PRAGMA foreign_keys = ON', done); // turn on FK enforcement
+        conn.run("PRAGMA foreign_keys = ON", done); // turn on FK enforcement
       },
     },
     useNullAsDefault: true,

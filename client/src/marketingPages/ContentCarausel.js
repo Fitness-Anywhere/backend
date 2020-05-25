@@ -11,7 +11,7 @@ const ContentCarausel = () => {
         <Carousel.Item>
           <img src={img1} alt="First slide" />
           <Carousel.Caption>
-            <h3>First slide label</h3>
+            <h5>First slide label</h5>
           </Carousel.Caption>
         </Carousel.Item>
 
@@ -19,7 +19,7 @@ const ContentCarausel = () => {
           <img src={img2} alt="Third slide" />
 
           <Carousel.Caption>
-            <h3>Second slide label</h3>
+            <h5>Second slide label</h5>
           </Carousel.Caption>
         </Carousel.Item>
       </Carousel>
