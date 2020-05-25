@@ -89,6 +89,27 @@ router.put('/:id', async (req, res, next) => {
     }
 });
 
+// @route   PATCH /api/instructors/:id
+// @desc    Update instructor
+// @access  Private
+router.patch('/:id', async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        
+        if (req.body.password) {
+            return res.status(401).json({
+                errorMessage: 'Password cannot be changed'
+            });
+        }
+        
+        const instructor = await Instructor.update(id, req.body);
+    
+        res.json(instructor);
+    } catch (error) {
+        next(error);
+    }
+});
+
 // @route   GET /api/instructors/:id/classes
 // @desc    Return all classes by instructor
 // @access  Private
