@@ -1,8 +1,10 @@
+# Fitness Anywhere website
+> ### https://fitness-anywhere.herokuapp.com/
+
 # Fitness Anywhere API
+> ### https://fitness-anywhere.herokuapp.com/api
 
-> ## https://fitness-anywhere.herokuapp.com/
-
-# Auth
+## Auth
 `Testing users:`
 |               | username       | password     |
 --------------- | -------------- | ------------ |
