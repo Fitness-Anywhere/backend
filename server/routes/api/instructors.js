@@ -81,13 +81,7 @@ router.put('/:id', async (req, res, next) => {
             });
         }
         
-        const instructor = await Instructor.update(id, {
-            username,
-            first_name,
-            last_name,
-            email,
-            phone: phone || null
-        });
+        const instructor = await Instructor.update(id, req.body);
     
         res.json(instructor);
     } catch (error) {
