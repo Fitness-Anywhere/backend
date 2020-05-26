@@ -9,18 +9,17 @@ const ClientJoined = ({ cls }) => {
   const {id} = useParams();
   const dispatch = useDispatch();
 
-  const deleteJoined = (item) => {
-    axiosWithAuth()
-      .delete(`/api/clients/${id}/classes/${cls.id}`)
-      .then((res) => {
-        dispatch({ 
-          type: 'SAVING_JOINED_CLASSES',
-          payload: res.data
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+  const deleteJoined = async () => {
+    try {
+      await axiosWithAuth().delete(`/api/clients/${id}/classes/${cls.id}`);
+      const res = await axiosWithAuth().get(`/api/clients/${id}/classes`);
+      dispatch({ 
+        type: 'SAVING_JOINED_CLASSES',
+        payload: res.data
       });
+    } catch(err) {
+        console.log(err);
+    };
   };
 
   return (

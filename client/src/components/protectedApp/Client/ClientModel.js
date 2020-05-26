@@ -6,7 +6,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import MainStripe from "../stripe/MainStripe";
 import { MdCheckCircle } from "react-icons/md";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 
 export default function ClientModel({ data }) {
@@ -14,6 +14,7 @@ export default function ClientModel({ data }) {
   const { isProccessing } = useSelector((state) => state.stripeReducer);
   const dispatch = useDispatch();
   const { id, c_id } = useParams();
+  const { push } = useHistory();
 
   const { image_url, price, name } = data;
 
@@ -22,12 +23,14 @@ export default function ClientModel({ data }) {
     if (!price || price==0) {
       await axiosWithAuth().post(`/api/clients/${id}/classes`, { class_id: c_id })
       dispatch({ type: "PAYMENT_PROCCESSED" });
+      push(`/account/client/${id}/schedule`);
     } 
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    isProccessing && push(`/account/client/${id}/schedule`);
   };
 
   //   console.log("varible here ", isProccessing);
