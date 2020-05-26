@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
@@ -14,10 +14,15 @@ import { Container } from "@material-ui/core";
 const ClientHomePage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const reducer = useSelector((state) => ({
-    ...state,
-  }));
-  const { allClasses, classesJoined } = reducer.clientReducer;
+  const [classesToJoin, setClassesToJoin] = useState([]);
+  const { allClasses, classesJoined } = useSelector(state => state.clientReducer);
+
+  useEffect(() => {
+    setClassesToJoin(
+      allClasses.filter(cls => 
+        classesJoined.findIndex(joined => joined.id === cls.id) === -1)
+    );
+  }, [allClasses, classesJoined]);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_CLIENT_CLASSES" });
@@ -62,7 +67,7 @@ const ClientHomePage = () => {
       <Navbar />
       <Header />
       <Container>
-        <ClientDisplayClasses allClasses={allClasses} joinClass={joinClass} />
+        <ClientDisplayClasses allClasses={classesToJoin} joinClass={joinClass} />
       </Container>
     </div>
   );
