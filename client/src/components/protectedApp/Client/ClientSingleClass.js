@@ -12,7 +12,6 @@ const ClientSingleClass = () => {
   const { id, c_id } = useParams();
   const dispatch = useDispatch();
   const [currentClass, setCurrentClass] = useState();
-  const [hasJoinedClass, setHasJoinedClass] = useState(false);
 
   const { classesJoined } = useSelector(state => state.clientReducer);
 
@@ -24,13 +23,13 @@ const ClientSingleClass = () => {
   useEffect(() => {
     dispatch({ type: "PROCCESSING_PAYMENT" });
     fetchClass();
-  }, []);
+  }, [classesJoined]);
 
-  console.log('classesJoined', classesJoined);
+  console.log(classesJoined);
 
   return (
     <>
-      {currentClass && (
+      {currentClass && classesJoined && (
         <>
           <Sharednav />
           <div className="InstructorSingleClass">
