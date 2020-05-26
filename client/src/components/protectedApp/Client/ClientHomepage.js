@@ -18,10 +18,15 @@ const ClientHomePage = () => {
   const { allClasses, classesJoined } = useSelector(state => state.clientReducer);
 
   useEffect(() => {
-    setClassesToJoin(
-      allClasses?.filter(cls => 
-        classesJoined?.findIndex(joined => joined.id === cls.id) === -1)
-    );
+    if(allClasses?.length) {
+      classesJoined?.length ? 
+        setClassesToJoin(
+          allClasses?.filter(cls => 
+            classesJoined?.findIndex(joined => joined.id === cls.id) === -1)
+        )
+      :
+      setClassesToJoin(allClasses);
+    }
   }, [allClasses, classesJoined]);
 
   useEffect(() => {
