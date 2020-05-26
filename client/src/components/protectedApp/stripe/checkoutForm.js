@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState } from "react";
+import { useParams, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
@@ -15,7 +15,7 @@ export default function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
   const { id, c_id } = useParams();
-  //   console.log("params ", params);
+  const { push } = useHistory();
 
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
@@ -51,20 +51,12 @@ export default function CheckoutForm() {
           },
         });
 
-        console.log(result);
-
         if (result.error) {
           // Show error to your customer (e.g., insufficient funds)
           console.log(result.error.message);
         } else {
           // The payment has been processed!
           if (result.paymentIntent.status === "succeeded") {
-            // Show a success message to your customer
-            // There's a risk of the customer closing the window before callback
-            // execution. Set up a webhook or plugin to listen for the
-            // payment_intent.succeeded event that handles any business critical
-            // post-payment actions.
-
             setIsProcessing(false);
             dispatch({ type: "PAYMENT_PROCCESSED" });
           }

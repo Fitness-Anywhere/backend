@@ -95,13 +95,23 @@ router.post('/:id/classes', async (req, res, next) => {
         // TODO check if client is already register in the class
 
         // update DB
+        console.log('sdfasdfsd')
         const classRegistered = await Class.registerClient(req.params.id, class_id);
-
-        // create stripe pay intent and return secret
-        const client_secret = await createPaymentIntent(req.client, classRegistered);
+        const { price } = classRegistered;
+        
+        let client_secret = null;
+        // if class is not free create payment
+        console.log(price)
+        if (price && price > 0) {
+            // create stripe pay intent and return secret
+            client_secret = await createPaymentIntent(req.client, classRegistered);
+        }
         
         // send client secret to FE
-        res.json({ client_secret });
+        res.json({
+            class: classRegistered,
+            client_secret
+        });
     } catch (error) {
         next(error);
     }
