@@ -19,8 +19,8 @@ const ClientHomePage = () => {
 
   useEffect(() => {
     setClassesToJoin(
-      allClasses.filter(cls => 
-        classesJoined.findIndex(joined => joined.id === cls.id) === -1)
+      allClasses?.filter(cls => 
+        classesJoined?.findIndex(joined => joined.id === cls.id) === -1)
     );
   }, [allClasses, classesJoined]);
 
