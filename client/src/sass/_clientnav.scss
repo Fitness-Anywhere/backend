@@ -15,6 +15,7 @@
     color: $white;
 
     h1 {
+      font-weight: normal;
       @media (max-width: $med-desktop) {
         font-size: 1.6rem;
       }
@@ -24,7 +25,9 @@
       a {
         text-decoration: none;
         color: $white;
-        font-size: 1.3rem;
+        font-weight: 300;
+        //   font-size: 1rem;
+        //   font-size: 1.3rem;
         padding: 0.5rem;
         @media (max-width: $med-desktop) {
           font-size: 1rem;

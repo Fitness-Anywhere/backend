@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useSelector } from "react-redux";
 import { NavLink, useRouteMatch } from "react-router-dom";
 
 const Navbar = () => {
-  const [name, setName] = useState("");
   const { url } = useRouteMatch();
-
-  useEffect(() => {
-    const saveName = JSON.parse(localStorage.getItem("name"));
-    if (saveName) {
-      setName(saveName);
-    }
-  }, [name]);
+  const { instructorName } = useSelector((state) => state.userReducer);
 
   const logout = () => {
     localStorage.clear();
@@ -21,9 +15,7 @@ const Navbar = () => {
       <div className="Navbar-container">
         <h1>fitness anywhere</h1>
         <nav>
-          <NavLink to={`${url}/profile`}>{`Welcome ${
-            name ? name : ""
-          }`}</NavLink>
+          <NavLink to={`${url}/profile`}>{`Welcome ${instructorName}`}</NavLink>
           <NavLink onClick={logout} to="/">
             Logout
           </NavLink>
