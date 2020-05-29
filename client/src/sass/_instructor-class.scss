@@ -5,9 +5,9 @@
   @include flex(center);
   flex-wrap: wrap;
 
-  a {
-    text-decoration: none;
-  }
+  //   a {
+  //     text-decoration: none;
+  //   }
 }
 
 .InstructorCardClass {
@@ -21,7 +21,7 @@
   @media (max-width: $mobile) {
     max-width: 400px;
   }
-  
+
   margin: 0 1rem 5rem;
 
   .InstructorCardClass-img {

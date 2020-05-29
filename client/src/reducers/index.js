@@ -5,6 +5,7 @@ import { clientReducer } from "./clientReducer";
 import { stripeReducer } from "./stripeReducer";
 import { credentialReducer } from "./credentialReducer";
 import { homepageReducer } from "./homepageReducer";
+import { instructorProfileReducer } from "./instructorProfileReducer";
 
 export const rootReducer = combineReducers({
   userReducer,
@@ -12,4 +13,5 @@ export const rootReducer = combineReducers({
   stripeReducer,
   credentialReducer,
   homepageReducer,
+  instructorProfileReducer,
 });

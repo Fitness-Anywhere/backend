@@ -1,28 +1,56 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Sharednav from "../Sharednav";
-import { useHistory, useRouteMatch, useParams, Link } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 import InstructorUpdateImage from "./InstrcutorUpdateImage";
 import axios from "axios";
-import profile from "../../../img/instructor.jpg";
+// import profile from "../../../img/instructor.jpg";
 
 const InstructorProfile = () => {
-  const history = useHistory();
-  const { url } = useRouteMatch();
+  const dispatch = useDispatch();
   const { id } = useParams();
+  const { instructorUpdatedProfile } = useSelector(
+    (state) => state.instructorProfileReducer
+  );
   const [img, setImg] = useState("");
 
-  // const [value, setValues] = useState()
+  const { username } = instructorUpdatedProfile;
 
-  // useEffect(() => {
-  //    axiosWithAuth()
-  //       .get(`/api/insructors/${id}`)
-  //          .then(res => {
+  useEffect(() => {
+    dispatch({ type: "GETTING_INSTRUCTOR_UPDATED_INFO" });
+    axiosWithAuth()
+      .get(`/api/instructors/${id}`)
+      .then((res) => {
+        console.log("res ", res);
+        dispatch({ type: "SAVING_INSTRUCTOR_UPDATED_INFO", payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        dispatch({
+          type: "SAVING_INSTRUCTOR_UPDATED_ERROR",
+          payload: err.response.data,
+        });
+      });
+  }, []);
+  useEffect(() => {
+    if (img) {
+      dispatch({ type: "UPDATING_INSTRUCTOR_IMG" });
+      axiosWithAuth()
+        .patch(`/api/instructors/${id}`, { image_url: img })
+        .then((res) => {
+          dispatch({ type: "SAVING_INSTRUCTOR_IMG", payload: res.data });
+        })
+        .catch((err) => {
+          console.log(err.response.data);
+          dispatch({
+            type: "SAVING_INSTRUCTOR_IMG_ERROR",
+            payload: err.response.data,
+          });
+        });
+    }
+  }, [img]);
 
-  //          })
-  // }, [input])
-
-  //   console.log("here ", img);
   const uploadImage = (e) => {
     const files = e.target.files[0];
     const formData = new FormData();
@@ -46,10 +74,12 @@ const InstructorProfile = () => {
       <div className="InstructorProfile-wrapper">
         <div className="left-row">
           <div className="left-row-img">
-            <img src={img} alt="" />
+            <img src={instructorUpdatedProfile.image_url} alt="" />
           </div>
-          <p className="name">omar</p>
-          <p>classes: 2</p>
+          <p className="name">{username}</p>
+          {/**
+           <p>classes: 2</p>
+         */}
         </div>
 
         <div className="profile-img-form">

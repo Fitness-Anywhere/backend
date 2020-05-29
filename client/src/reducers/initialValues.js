@@ -12,6 +12,7 @@ export const initialValues = {
   error: "",
   joinedClass: false,
   classesJoined: [],
+  instructorUpdatedProfile: {},
 
   // stripe
   isProccessing: false,
