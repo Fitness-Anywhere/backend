@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { convertingTime } from "../../../helperFunctions/convertingTime";
 import Sharednav from "../Sharednav";
 import GoogleMap from "../googleMap";
 import ClientModel from "./ClientModel";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
+import { parse } from "date-fns";
 
 const ClientSingleClass = () => {
   const { id, c_id } = useParams();
   const dispatch = useDispatch();
   const [currentClass, setCurrentClass] = useState();
+
+  const { classesJoined } = useSelector(state => state.clientReducer);
 
   const fetchClass = async () => {
     const res = await axiosWithAuth().get(`/api/classes/${c_id}`);
@@ -19,14 +22,14 @@ const ClientSingleClass = () => {
 
   useEffect(() => {
     dispatch({ type: "PROCCESSING_PAYMENT" });
-
     fetchClass();
-  }, []);
+  }, [classesJoined]);
+
+  console.log(classesJoined);
 
   return (
     <>
-      {" "}
-      {currentClass && (
+      {currentClass && classesJoined && (
         <>
           <Sharednav />
           <div className="InstructorSingleClass">
@@ -72,9 +75,12 @@ const ClientSingleClass = () => {
                   <h4>description</h4>
                   <p>{currentClass.description}</p>
                 </div>
-                <div id="buy-btn">
-                  <ClientModel data={currentClass} />
-                </div>
+                {/* Show button if client has not joined the class */}
+                { classesJoined.findIndex(cls => cls.id.toString() === c_id) === -1  && 
+                  <div id="buy-btn">
+                    <ClientModel data={currentClass} />
+                  </div>
+                }
               </div>
             </div>
           </div>

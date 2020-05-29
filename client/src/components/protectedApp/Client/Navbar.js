@@ -1,8 +1,8 @@
 import React from "react";
-import { NavLink, useRouteMatch } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 
 const Navbar = () => {
-  const { url, path } = useRouteMatch();
+  const { id } = useParams();
   const logout = () => {
     localStorage.clear();
   };
@@ -14,7 +14,7 @@ const Navbar = () => {
           <NavLink to="/" onClick={logout}>
             logout
           </NavLink>
-          <NavLink to={`${url}/schedule`}>Schedule</NavLink>
+          <NavLink to={`/account/client/${id}/schedule`}>Schedule</NavLink>
         </nav>
       </div>
     </div>

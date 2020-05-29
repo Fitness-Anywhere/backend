@@ -1,24 +1,36 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import MainStripe from "../stripe/MainStripe";
 import { MdCheckCircle } from "react-icons/md";
+import { useParams, useHistory } from "react-router-dom";
+import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 
 export default function ClientModel({ data }) {
   const [open, setOpen] = useState(false);
   const { isProccessing } = useSelector((state) => state.stripeReducer);
+  const dispatch = useDispatch();
+  const { id, c_id } = useParams();
+  const { push } = useHistory();
 
   const { image_url, price, name } = data;
 
-  const handleClickOpen = () => {
+  const handleClickOpen = async () => {
+    // free class
+    if (!price || price==0) {
+      await axiosWithAuth().post(`/api/clients/${id}/classes`, { class_id: c_id })
+      dispatch({ type: "PAYMENT_PROCCESSED" });
+      push(`/account/client/${id}/schedule`);
+    } 
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    isProccessing && push(`/account/client/${id}/schedule`);
   };
 
   //   console.log("varible here ", isProccessing);
@@ -70,7 +82,7 @@ export default function ClientModel({ data }) {
         </DialogContent>
 
         <div id="power-by-stripe">
-          <p className="power-by">Power by Stripe</p>
+          <p className="power-by">Powered by Stripe</p>
         </div>
       </Dialog>
     </div>

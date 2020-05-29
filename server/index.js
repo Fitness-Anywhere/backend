@@ -15,7 +15,7 @@ server.use("/api/webhooks", require("./routes/api/webhooks"));
 
 server.use(express.json());
 
-// server.get('/', (req, res) => res.send('API running'));
+server.get('/api', (req, res) => res.send('API running'));
 
 // Define routes
 server.use("/api/auth/", require("./routes/api/auth"));
@@ -33,6 +33,6 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 
-// server.use(errorMiddleware);
+server.use(errorMiddleware);
 
 module.exports = server;

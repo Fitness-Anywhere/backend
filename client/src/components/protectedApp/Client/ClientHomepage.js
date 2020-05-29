@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
@@ -7,16 +7,27 @@ import Header from "./Header";
 import ClientDisplayClasses from "./ClientDisplayClasses";
 
 import MainStripe from "../stripe/MainStripe";
+import { Container } from "@material-ui/core";
 
 // toggle class for joined client
 
 const ClientHomePage = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const reducer = useSelector((state) => ({
-    ...state,
-  }));
-  const { allClasses, classesJoined } = reducer.clientReducer;
+  const [classesToJoin, setClassesToJoin] = useState([]);
+  const { allClasses, classesJoined } = useSelector(state => state.clientReducer);
+
+  useEffect(() => {
+    if(allClasses?.length) {
+      classesJoined?.length ? 
+        setClassesToJoin(
+          allClasses?.filter(cls => 
+            classesJoined?.findIndex(joined => joined.id === cls.id) === -1)
+        )
+      :
+      setClassesToJoin(allClasses);
+    }
+  }, [allClasses, classesJoined]);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_CLIENT_CLASSES" });
@@ -60,7 +71,9 @@ const ClientHomePage = () => {
     <div>
       <Navbar />
       <Header />
-      <ClientDisplayClasses allClasses={allClasses} joinClass={joinClass} />
+      <Container>
+        <ClientDisplayClasses allClasses={classesToJoin} joinClass={joinClass} />
+      </Container>
     </div>
   );
 };

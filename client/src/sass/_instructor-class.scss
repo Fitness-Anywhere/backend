@@ -11,13 +11,17 @@
 }
 
 .InstructorCardClass {
-  width: 510px;
+  width: 30%;
   background: $white;
   border-radius: 5px;
 
-  @media (max-width: $big-desktop) {
-    width: 510px;
+  @media (max-width: $med-desktop) {
+    width: 500px;
   }
+  @media (max-width: $mobile) {
+    max-width: 400px;
+  }
+  
   margin: 0 1rem 5rem;
 
   .InstructorCardClass-img {
@@ -26,6 +30,10 @@
       border-radius: 5px;
       height: 320px;
       object-fit: cover;
+
+      @media (max-width: $mobile) {
+        max-height: 224px;
+      }
     }
   }
 

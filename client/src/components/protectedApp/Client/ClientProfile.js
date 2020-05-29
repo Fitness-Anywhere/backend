@@ -9,7 +9,6 @@ import ClientJoined from "./ClientJoined";
 const ClientProfile = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
-  const [update, setUpdate] = useState("");
   const [clientName, setClientName] = useState({
     first_name: "",
     last_name: "",
@@ -18,7 +17,7 @@ const ClientProfile = () => {
   /// testing
   useEffect(() => {
     axiosWithAuth()
-      .get(`api/clients/${id}`)
+      .get(`/api/clients/${id}`)
       .then((res) => {
         const fullName = {
           first_name: res.data.first_name,
@@ -42,21 +41,9 @@ const ClientProfile = () => {
         console.log(err);
         dispatch({ type: "ERROR_RERENDERING_JOINED_CLASSES", payload: err });
       });
-  }, [update, dispatch, id]);
+  }, [dispatch, id]);
 
-  const deletedJoined = (item) => {
-    const class_id = item.id;
-    axiosWithAuth()
-      .delete(`api/clients/${id}/classes/${class_id}`)
-      .then((res) => {
-        setUpdate(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  };
-
-  return (
+  return (reducer &&
     <div className="ClientProfile">
       <Sharednav />
       <div className="ClientProfile-wrapper">
@@ -78,11 +65,10 @@ const ClientProfile = () => {
         </div>
       </div>
       <div className="show-joined-classes">
-        {reducer.map((cls) => (
+        {reducer.length > 0 && reducer.map((cls) => (
           <ClientJoined
             key={cls.id}
             cls={cls}
-            deletedJoined={() => deletedJoined(cls)}
           />
         ))}
       </div>
