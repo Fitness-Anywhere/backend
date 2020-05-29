@@ -22,7 +22,7 @@ const InstructorProfile = () => {
     axiosWithAuth()
       .get(`/api/instructors/${id}`)
       .then((res) => {
-        console.log("res ", res);
+        //   console.log("res ", res);
         dispatch({ type: "SAVING_INSTRUCTOR_UPDATED_INFO", payload: res.data });
       })
       .catch((err) => {

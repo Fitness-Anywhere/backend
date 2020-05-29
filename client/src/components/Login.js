@@ -24,7 +24,7 @@ function Login() {
   // omar12 omar12 instructor
   // omarr omarrr client
   const onSubmit = (values) => {
-    console.log("values herer", values);
+    //  console.log("values herer", values);
     const { username, password, instructorOrClient } = values;
     const newValues = { username, password };
     if (instructorOrClient === "instructor") {

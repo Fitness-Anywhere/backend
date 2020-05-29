@@ -5,12 +5,15 @@
     width: $main-width;
     height: 7vh;
     margin: 0 auto;
-    //   border: 1px solid red;
     padding: 0 1rem;
     text-transform: capitalize;
 
     @include flex(space-between);
     align-items: center;
+
+    h1 {
+      font-weight: normal;
+    }
 
     #model-nav {
       // border: 1px solid red;
