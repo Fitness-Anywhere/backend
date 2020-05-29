@@ -41,7 +41,7 @@ const InstructionHomePage = () => {
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
         dispatch({ type: "ERROR_GETTING_INSTRUCTOR", payload: err });
       });
   }, [dispatch, id]);
