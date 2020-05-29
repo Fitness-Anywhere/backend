@@ -21,6 +21,7 @@ export const initialValues = {
   createdSuccessfully: "",
 
   homepageClasses: [],
+  instructorsInfo: [],
 };
 
 export const credentialValues = {
