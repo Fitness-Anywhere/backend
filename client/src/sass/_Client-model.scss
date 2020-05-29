@@ -75,6 +75,9 @@
     #close-btn {
       button {
         color: $black;
+        background: none;
+        outline: none;
+        //   border: none;
         //   font-weight: normal;
         //   text-transform: capitalize;
 
@@ -114,5 +117,6 @@
     background: $main-color;
     cursor: pointer;
     text-transform: capitalize;
+    border: none;
   }
 }
