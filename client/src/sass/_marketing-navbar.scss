@@ -7,17 +7,28 @@
     margin: 0 auto;
     padding: 0 1rem;
     text-transform: capitalize;
+    //  border: 1px solid red;
+    @media (max-width: $laptop) {
+      flex-direction: column;
+      padding-top: 1rem;
+    }
 
     @include flex(space-between);
     align-items: center;
 
     h1 {
-      font-weight: normal;
+      font-weight: 300;
+
+      @media (max-width: $desktop) {
+        font-size: 2rem;
+      }
     }
 
     #model-nav {
       // border: 1px solid red;
       display: flex;
+      // flex-direction: column;
+      align-items: center;
 
       a {
         //   border: 1px solid red;
@@ -29,6 +40,10 @@
 
         text-transform: uppercase;
         font-size: 1rem;
+
+        @media (max-width: $desktop) {
+          font-size: 0.9rem;
+        }
 
         &:first-child {
           margin: 0;
@@ -58,6 +73,10 @@
       background: none;
       // font-size: 1rem;
       padding: 0 0.9rem;
+
+      @media (max-width: $desktop) {
+        font-size: 0.9rem;
+      }
 
       text-transform: uppercase;
       // border: 1px soli red;

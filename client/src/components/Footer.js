@@ -8,12 +8,13 @@ const Footer = () => {
       <footer>
         <h1>fitness anywhere</h1>
         <nav>
-          <Link
-            to="https://github.com/Build-Week-Anywhere-Fitness-04"
+          <a
+            href="https://github.com/Build-Week-Anywhere-Fitness-04"
             target="_blank"
+            rel="noopener noreferrer"
           >
             <FaGithub />
-          </Link>
+          </a>
         </nav>
       </footer>
       <p className="developed">
