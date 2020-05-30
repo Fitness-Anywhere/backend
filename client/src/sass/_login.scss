@@ -1,15 +1,11 @@
 .Login {
-  //   border: 1px solid red;
-  //   width: $main-width;
   margin: 3rem auto;
-  //   height: 100%;
 
   h1 {
     text-align: center;
     margin-bottom: 2.5rem;
     font-size: 1.8rem;
     margin-top: -2rem;
-    //  font-weight: 300;
 
     @media (max-width: $med-desktop) {
       font-size: 1.5rem;
@@ -19,22 +15,19 @@
   }
 
   form {
-    //  border: 1px solid rgb(201, 200, 200);
     border-radius: 4px;
 
     width: 450px;
     margin: 0 auto;
-    //  padding: 3rem 2rem;
 
     @media (max-width: $med-desktop) {
       width: 350px;
     }
 
     label {
-      // margin-bottom: 0.7rem;
       position: relative;
-
       width: 100%;
+
       input {
         display: block;
         width: 100%;
@@ -57,19 +50,14 @@
     }
 
     .select {
-      // border: 1px solid red;
       display: block;
       width: 100%;
       select {
         width: 100%;
-        //   margin-bottom: 1rem;
         padding: 0.4rem;
         font-size: 1.2rem;
         color: $black;
-        //   border: 1px solid grey;
         border: 1px solid rgb(201, 200, 200);
-
-        //   -webkit-appearance: none;
         appearance: none;
         background: none;
         cursor: pointer;
@@ -83,7 +71,6 @@
     }
 
     .Login-error {
-      // border: 1px solid red;
       font-size: 0.8rem;
       width: 300px;
       font-weight: $sm-font;
@@ -95,20 +82,17 @@
 
     button {
       padding: 0.8rem 2rem;
-      background: $main-color;
       width: 100%;
-      color: $white;
-      border: none;
-      font-weight: 300;
+      font-weight: $sm-font;
       border-radius: 4px;
       font-size: $main-size;
       margin-top: 2rem;
-      cursor: pointer;
+
+      @include btn($white, $main-color);
 
       @media (max-width: $med-desktop) {
         font-size: 1rem;
         padding: 0.4rem;
-        //   margin-top: 1.5rem;
       }
     }
 
@@ -118,21 +102,18 @@
     }
   }
 
-  //  border: 1px solid red;
+  //   .option-btn {
+  //     text-align: center;
+  //     margin-top: 1.5rem;
+  //     //  color: grey;
+  //     //  font-weight: $sm-font;
 
-  .option-btn {
-    //  border: 1px solid red;
-    text-align: center;
-    margin-top: 1.5rem;
-    color: grey;
-    font-weight: $sm-font;
-    //  margin-bottom: -1rem;
-
-    button {
-      border: none;
-      color: $main-color;
-      font-weight: 300;
-      outline: none;
-    }
-  }
+  //     button {
+  //       border: 1px solid red;
+  //       // color: $main-color;
+  //       font-weight: 300;
+  //       outline: none;
+  //       // @include btn($main-color)
+  //     }
+  //   }
 }
