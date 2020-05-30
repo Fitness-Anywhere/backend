@@ -2,3 +2,18 @@
   display: flex;
   justify-content: $justify;
 }
+
+@mixin btn($color, $bg-color) {
+  color: $color;
+  border: none;
+  outline: none;
+  background: $bg-color;
+  display: inline-block;
+  cursor: pointer;
+}
+
+@mixin bgProps {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}

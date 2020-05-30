@@ -1,13 +1,11 @@
 .Navbar-wrapper {
-  //   border-bottom: 1px solid $black;
-
   .Marketing-Navbar {
-    width: $main-width;
-    height: 7vh;
+    max-width: $main-width;
+    height: $nav-height;
     margin: 0 auto;
     padding: 0 1rem;
     text-transform: capitalize;
-    //  border: 1px solid red;
+
     @media (max-width: $laptop) {
       flex-direction: column;
       padding-top: 1rem;
@@ -17,7 +15,7 @@
     align-items: center;
 
     h1 {
-      font-weight: 300;
+      font-weight: $sm-font;
 
       @media (max-width: $desktop) {
         font-size: 2rem;
@@ -25,19 +23,14 @@
     }
 
     #model-nav {
-      // border: 1px solid red;
       display: flex;
-      // flex-direction: column;
       align-items: center;
 
       a {
-        //   border: 1px solid red;
         margin-right: 1rem;
         text-decoration: none;
-        //   padding: 0.2rem 0.4rem;
         padding: 0 0.9rem;
         color: $white;
-
         text-transform: uppercase;
         font-size: 1rem;
 
@@ -64,14 +57,12 @@
 /// model links
 
 #model-links {
-  //   border: 1px solid red;
   #model-links-btn {
     button {
       color: $white;
       border: none;
       outline: none;
       background: none;
-      // font-size: 1rem;
       padding: 0 0.9rem;
 
       @media (max-width: $desktop) {
@@ -79,7 +70,6 @@
       }
 
       text-transform: uppercase;
-      // border: 1px soli red;
 
       &:hover {
         background: none;
@@ -89,38 +79,28 @@
 }
 
 .option-btn {
-  //  border: 1px solid red;
   text-align: center;
-
   margin: -1.5rem 0 2rem;
   color: grey;
   font-weight: $sm-font;
-  //  margin-bottom: -1rem;
 
   span {
     button {
-      border: none;
-      background: none;
-      color: $main-color;
-      font-weight: 300;
-      outline: none;
+      @include btn($main-color, none);
+      font-weight: $sm-font;
     }
   }
 }
 
 #home-modal-container {
-  //   border: 1px solid red;
   padding: -2rem 0;
 }
 
 #close-credential-modal {
-  display: flex;
-  justify-content: flex-end;
+  @include flex(flex-end);
+
   button {
-    border: none;
-    outline: none;
-    //  font-size: 0.6rem;
-    //  margin: 0;
+    @include btn($black, none);
     padding-top: 1rem;
     &:hover {
       background: none;

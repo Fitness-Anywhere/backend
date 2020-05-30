@@ -1,11 +1,9 @@
 .marketing-Content {
-  //   border: 1px solid red;
   max-width: $width-content;
   margin: 7rem auto;
 
   .sub-titles {
     text-align: center;
-    //  border: 1px solid blue;
     margin-bottom: 4rem;
 
     h3 {
@@ -25,23 +23,18 @@
 
       @media (max-width: $desktop) {
         font-size: 1.8rem;
-        //   font-weight: 300;
       }
     }
   }
 
   .marketing-content-options {
-    display: flex;
-    justify-content: center;
-    //  justify-content: space-around;
-    //  border: 1px solid red;
+    @include flex(center);
+
     flex-wrap: wrap;
     padding: 1rem 0;
-    //  margin-bottom: 2rem;
+
     .content-options-img {
-      // border: 1px solid red;
       position: relative;
-      // border-radius: 50%;
       border-radius: 5px;
       margin: 0 1rem 1rem;
       width: 250px;
@@ -59,18 +52,15 @@
         height: 100%;
         border-radius: 4px;
         width: 100%;
-        display: flex;
-        justify-content: center;
+        @include flex(center);
+
         top: 50%;
         left: 50%;
-        //   border: 1px solid blue;
         align-items: center;
         background: rgba(0, 0, 0, 0.5);
         z-index: 10;
         font-size: 0.9rem;
-        //   font-weight: bold;
         transform: translate(-50%, -50%);
-        //   margin-bottom: 4rem;
         color: $white;
         padding: 0 2rem;
       }
@@ -79,7 +69,6 @@
 }
 
 .about-our-web {
-  //   border: 1px solid red;
   max-width: 900px;
   margin: 0 auto 8rem;
   padding: 0 2rem;
@@ -104,7 +93,6 @@
 }
 
 .marketing-content-info {
-  //   border: 1px solid red;
   width: 100%;
   height: 60vh;
   margin: 0 auto 8rem;
@@ -123,20 +111,17 @@
     width: 100%;
     height: 100%;
     background: url("../img/marketing1.jpg");
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
+    @include bgProps();
     z-index: -1;
   }
 
   .content-info-wrapper {
     color: $white;
     height: 100%;
-    display: flex;
+    @include flex(center);
+
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    //  border: 1px solid red;
     padding: 0 2rem;
 
     p {
@@ -146,7 +131,6 @@
         font-size: 1rem;
       }
       &:first-child {
-        //   color: red;
         margin-bottom: 1.5rem;
         font-size: 1.9rem;
 
@@ -163,7 +147,6 @@
     text-align: center;
     margin: 1rem 0 4rem;
     font-size: 2rem;
-    //  color: $main-color;
 
     @media (max-width: $desktop) {
       font-size: 1.8rem;
@@ -183,16 +166,12 @@
 
 #Carousel {
   width: 900px;
-  //   border: 1px solid red;
-  //   height: 300px;
   margin: 0 auto 8rem;
 
   img {
     width: 900px;
-    //  border-radius: 4px;
     height: 400px;
     object-fit: cover;
-    //  border: 1px solid blue;
 
     @media (max-width: $desktop) {
       width: 100%;
