@@ -1,9 +1,13 @@
 #ClientModel {
   #add-to-cart-btn {
     button {
-      // color: red;
-      font-weight: normal;
-      font-size: 1rem;
+      font-weight: $sm-font;
+
+      text-transform: capitalize;
+
+      @media (max-width: $med-desktop) {
+        font-size: 1rem;
+      }
     }
   }
 }
@@ -15,13 +19,16 @@
     text-align: center;
     font-size: 0.8rem;
     margin-top: 2rem;
+
+    @media (max-width: $med-desktop) {
+      margin-top: 1rem;
+    }
   }
 }
 
 #close-success-payment {
   button {
     border: none;
-    //  font-size: 0.8rem;
     padding: 0.3rem;
     outline: none;
     color: grey;
@@ -30,8 +37,6 @@
 
 .success-payment {
   color: green;
-  //   border: 1px solid red;
-  //   font-weight: 300;
   padding: 2rem 3rem;
   .success-icon {
     text-align: center;
@@ -42,30 +47,36 @@
     text-transform: capitalize;
     margin: 1rem 0;
     font-size: 1.5rem;
-    //  font-weight: 300;
   }
 }
 
 .show-payment-info {
-  //   border: 1px solid red;
   padding: 1rem 0;
   color: $black;
 
   .show-payment-info-options {
-    //  border: 1px solid blue;
-    display: flex;
-    justify-content: space-between;
+    @include flex(space-between);
 
     h2 {
       margin-bottom: 1.5rem;
       text-transform: capitalize;
+
+      @media (max-width: $med-desktop) {
+        font-size: 1.6rem;
+        font-weight: 400;
+        margin-bottom: 1rem;
+      }
     }
 
     p {
       margin-bottom: 1rem;
       display: block;
       font-size: 1.5rem;
-      // font-weight: bold;
+
+      @media (max-width: $med-desktop) {
+        font-size: 1.3rem;
+        font-weight: 300;
+      }
     }
 
     .card-section {
@@ -77,13 +88,10 @@
         color: $black;
         background: none;
         outline: none;
-        //   border: none;
-        //   font-weight: normal;
-        //   text-transform: capitalize;
 
-        //   &:hover {
-        //     background: none;
-        //   }
+        @media (max-width: $med-desktop) {
+          font-size: 0.6rem;
+        }
       }
     }
   }
@@ -91,7 +99,11 @@
   .show-payment-info-img {
     width: 550px;
     height: 25vh;
-    //  border: 1px solid red;
+
+    @media (max-width: $med-desktop) {
+      width: 500px;
+      height: 15vh;
+    }
 
     img {
       width: 100%;
@@ -108,15 +120,17 @@
   }
 
   .confirm-btn {
-    display: inline-block;
     margin-top: 1.5rem;
     padding: 0.6rem 1.4rem;
     font-size: 1rem;
     border-radius: 4px;
-    color: $white;
-    background: $main-color;
-    cursor: pointer;
     text-transform: capitalize;
-    border: none;
+
+    @include btn($white, $main-color);
+
+    @media (max-width: $med-desktop) {
+      font-weight: $sm-font;
+      padding: 0.5rem 1rem;
+    }
   }
 }
