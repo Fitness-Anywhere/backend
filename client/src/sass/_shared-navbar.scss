@@ -11,17 +11,24 @@
     z-index: 100;
     color: $black;
 
+    h1 {
+      font-weight: 400;
+
+      @media (max-width: $desktop) {
+        font-size: 2rem;
+      }
+    }
+
     nav {
       a {
         text-decoration: none;
         color: $black;
+        font-size: 1.3rem;
+        padding: 0.5rem;
 
         @media (max-width: $med-desktop) {
           font-size: 1rem;
         }
-
-        font-size: 1.3rem;
-        padding: 0.5rem;
 
         &:first-child {
           margin-right: 1rem;

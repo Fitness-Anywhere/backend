@@ -3,14 +3,18 @@
 
   h3 {
     font-size: 1.6rem;
-    //  text-align: center;
+    text-align: center;
+
+    @media (max-width: $med-desktop) {
+      font-size: 1.4rem;
+    }
   }
   width: $width-content;
   margin: 5rem auto;
-  //   border: 1px solid red;
+
   .ClientDisplayClasses-wrapper {
     margin-top: 3rem;
-    @include flex(space-between);
+    @include flex(space-around);
 
     @media (max-width: $laptop) {
       justify-content: center;
@@ -24,13 +28,13 @@
   align-items: center;
   display: flex;
   padding: 0 0.7rem;
-  border-radius: 50%;
   border-radius: 4px;
   font-size: 0.9rem;
   background: $main-color;
   color: $white;
   cursor: pointer;
   transition: background 0.3s ease;
+
   &:hover {
     background: lighten($main-color, 10%);
   }
