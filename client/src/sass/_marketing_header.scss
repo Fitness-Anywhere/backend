@@ -2,6 +2,10 @@
   color: $white;
   background: rgba(0, 0, 0, 0.5);
 
+  @media (max-width: $desktop) {
+    height: 80vh;
+  }
+
   &::after {
     content: "";
     width: 100%;
@@ -10,51 +14,64 @@
     top: 0;
     left: 0;
     background: url("../img/marketing.jpg");
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
+    @include bgProps();
     z-index: -1;
+
+    @media (max-width: $desktop) {
+      height: 80vh;
+    }
   }
 }
 
 .marketing-Header {
-  //   border: 1px solid red;
   height: 93vh;
 
-  display: flex;
-  justify-content: center;
+  @media (max-width: $desktop) {
+    height: 80vh;
+  }
+
+  @include flex(center);
   align-items: center;
-  //   margin-top: -5rem;
+
   .marketing-header-content {
     text-align: center;
 
     h1 {
       font-size: 3rem;
       margin-bottom: 2rem;
-      // text-transform: uppercase;
+      font-weight: normal;
+
+      @media (max-width: $desktop) {
+        font-size: 2.1rem;
+        font-weight: $sm-font;
+        margin-bottom: 1rem;
+      }
     }
 
     p {
-      // border: 1px solid red;
       width: 60%;
       line-height: 1.5;
       margin: 0 auto 2rem;
-      font-size: 1.2rem;
+      font-size: $main-size;
       margin-bottom: 2rem;
+
+      @media (max-width: $desktop) {
+        font-size: 1rem;
+      }
     }
 
     .btn-learn-more {
       button {
-        display: inline-block;
-        font-size: 1.2rem;
+        font-size: $main-size;
         padding: 0.5rem 1.5rem;
         border-radius: 4px;
         text-transform: capitalize;
-        background: $main-color;
-        color: $white;
-        cursor: pointer;
-        border: none;
-        outline: none;
+
+        @include btn($white, $main-color);
+
+        @media (max-width: $desktop) {
+          font-size: 1rem;
+        }
       }
     }
   }

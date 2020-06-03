@@ -14,7 +14,7 @@ const InstructionHomePage = () => {
   const reducer = useSelector((state) => ({
     ...state,
   }));
-  const { instructorClass, instructorName } = reducer.userReducer;
+  const { instructorClass } = reducer.userReducer;
 
   useEffect(() => {
     dispatch({ type: "FETCHING_INSTRUCTOR_CLASSES" });
@@ -32,16 +32,15 @@ const InstructionHomePage = () => {
   useEffect(() => {
     dispatch({ type: "FETCHING_INSTRUCTOR" });
     axiosWithAuth()
-      .get(`api/instructors/${id}`)
+      .get(`/api/instructors/${id}`)
       .then((res) => {
-        localStorage.setItem("name", JSON.stringify(res.data.first_name));
         dispatch({
           type: "SAVE_INSTRUCTOR_NAME",
           payload: res.data.first_name,
         });
       })
       .catch((err) => {
-        console.log(err);
+        console.log(err.response.data);
         dispatch({ type: "ERROR_GETTING_INSTRUCTOR", payload: err });
       });
   }, [dispatch, id]);
@@ -64,7 +63,7 @@ const InstructionHomePage = () => {
 
   return (
     <div>
-      <InstructorHeader name={instructorName} />
+      <InstructorHeader />
       <InstructorContent
         setUpdateData={setUpdateData}
         instructorClass={instructorClass}

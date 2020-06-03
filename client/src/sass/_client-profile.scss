@@ -22,21 +22,30 @@
     .flex {
       h2 {
         margin-bottom: 2rem;
-        font-size: 1.8rem;
+        font-size: 1.6rem;
       }
 
       margin-left: 2rem;
       .toggle-message {
         .find-classes {
           a {
-            display: inline-block;
+            // display: inline-block;
             margin-top: 1.5rem;
-            background: $main-color;
-            color: $white;
+            // background: $main-color;
+            // color: $white;
             padding: 0.7rem 2rem;
             border-radius: 4px;
             text-decoration: none;
-            text-transform: uppercase;
+            text-transform: capitalize;
+            font-size: 1.1rem;
+
+            @include btn($white, $main-color);
+
+            @media (max-width: $med-desktop) {
+              font-size: 1rem;
+              font-weight: $sm-font;
+              padding: 0.4rem 1.2rem;
+            }
           }
         }
       }

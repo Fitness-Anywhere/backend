@@ -1,13 +1,9 @@
 .DisplayInstructorClasses {
   width: $width-content;
   margin: 2rem auto 5rem;
-  //   border: 1px solid red;
+
   @include flex(center);
   flex-wrap: wrap;
-
-  a {
-    text-decoration: none;
-  }
 }
 
 .InstructorCardClass {
@@ -15,13 +11,17 @@
   background: $white;
   border-radius: 5px;
 
+  @media (max-width: $desktop) {
+    width: 42%;
+  }
+
   @media (max-width: $med-desktop) {
     width: 500px;
   }
   @media (max-width: $mobile) {
     max-width: 400px;
   }
-  
+
   margin: 0 1rem 5rem;
 
   .InstructorCardClass-img {
@@ -31,6 +31,10 @@
       height: 320px;
       object-fit: cover;
 
+      @media (max-width: $desktop) {
+        height: 280px;
+      }
+
       @media (max-width: $mobile) {
         max-height: 224px;
       }
@@ -38,7 +42,7 @@
   }
 
   .InstructorCardClass-description {
-    padding: 0 0.5rem 1rem;
+    padding: 0 0.5rem;
     text-transform: capitalize;
 
     .Instructor-top-row {
@@ -49,17 +53,30 @@
       .name {
         color: $black;
         font-size: 1.2rem;
+
+        @media (max-width: $med-desktop) {
+          font-size: 1.1rem;
+        }
       }
 
       .price {
         color: $main-color;
         font-size: 1.2rem;
+        font-weight: $sm-font;
+
+        @media (max-width: $desktop) {
+          font-size: 1.1rem;
+        }
       }
     }
 
     .duration {
       color: grey;
       margin-bottom: 0.5rem;
+
+      @media (max-width: $desktop) {
+        font-weight: $sm-font;
+      }
     }
 
     .bottom-row {
@@ -71,6 +88,11 @@
         display: inline-block;
         padding: 0.8rem 1rem;
         border-radius: 4px;
+
+        @media (max-width: $desktop) {
+          padding: 0.5rem 1rem;
+          font-weight: $sm-font;
+        }
       }
 
       .icons {

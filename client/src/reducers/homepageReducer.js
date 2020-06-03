@@ -20,6 +20,30 @@ export const homepageReducer = (state = initialValues, action) => {
         loading: false,
         error: action.payload,
       };
+
+    case "FETCHING_INSTRUCTORS":
+      return {
+        ...state,
+        loading: true,
+      };
+    case "SAVING_ALL_INSTRUCTORS":
+      let checkLength = "";
+      if (action.payload.length > 3) {
+        checkLength = action.payload.slice(0, 3);
+      } else {
+        checkLength = action.payload;
+      }
+      return {
+        ...state,
+        loading: true,
+        instructorsInfo: checkLength,
+      };
+    case "SAVING_ALL_INSTRUCTORS_ERROR":
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

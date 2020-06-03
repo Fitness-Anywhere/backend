@@ -24,13 +24,16 @@ const SearchClassForm = () => {
         cla.location.includes(search)
     );
     console.log("filtered ", filtered);
+    console.log("value ", value);
+    console.log("reducer ", reducer);
+
     dispatch({ type: "ADDING_SEARCH_CLASSES", payload: filtered });
     history.push(`${url}/${search}/results`);
     reset(initialValues);
   };
   return (
     <div className="SearchClassForm">
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form className="SearchForm" onSubmit={handleSubmit(onSubmit)}>
         <label htmlFor="search">
           <input
             type="text"

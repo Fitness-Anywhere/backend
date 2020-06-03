@@ -12,6 +12,7 @@ export const initialValues = {
   error: "",
   joinedClass: false,
   classesJoined: [],
+  instructorUpdatedProfile: {},
 
   // stripe
   isProccessing: false,
@@ -20,6 +21,7 @@ export const initialValues = {
   createdSuccessfully: "",
 
   homepageClasses: [],
+  instructorsInfo: [],
 };
 
 export const credentialValues = {

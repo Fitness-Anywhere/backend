@@ -27,7 +27,6 @@ const initialValues = {
   location: "",
   start_time: "",
   intensity: "",
-  status: "",
   price: "",
   duration: "",
   file: "",
@@ -98,7 +97,6 @@ const AddClassesForm = ({ setUpdateData }) => {
     axiosWithAuth()
       .post(`/api/instructors/${instructorID}/classes`, newValues)
       .then((res) => {
-        //   console.log(res);
         dispatch({ type: "ADDED_CLASS_SUCCESSFULLY" });
         setUpdateData(res.data);
         reset({ initialValues });
@@ -188,7 +186,8 @@ const AddClassesForm = ({ setUpdateData }) => {
             </label>
           </div>
           <div className="div-two">
-            <label htmlFor="status">
+            {/**
+         <label htmlFor="status">
               <input
                 type="text"
                 id="status"
@@ -198,6 +197,8 @@ const AddClassesForm = ({ setUpdateData }) => {
                 //  as={TextField}
               />
             </label>
+         */}
+
             <label htmlFor="price">
               <input
                 type="number"

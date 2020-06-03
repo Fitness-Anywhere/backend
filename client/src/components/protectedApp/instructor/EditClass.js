@@ -27,7 +27,7 @@ const values = {
   location: "",
   start_time: "",
   intensity: "",
-  status: "",
+  //   status: "",
   price: "",
   duration: "",
   max_class_size: "",
@@ -43,6 +43,8 @@ const EditClass = () => {
   const [img, setImg] = useState("");
   const classes = useStyles();
 
+  //   console.log("check this ", classe);
+
   const [selectedTime, setSelectedTime] = useState(new Date());
   const [selectedDate, setSelectedDate] = useState(new Date());
 
@@ -52,6 +54,7 @@ const EditClass = () => {
       .get(`/api/instructors/${id}/classes/${c_id}`)
       .then((res) => {
         setClasse(res.data);
+        //   console.log("here ", res);
       })
       .catch((err) => {
         console.log(err);
@@ -173,7 +176,9 @@ const EditClass = () => {
             onChange={handleValueChange}
           />
         </label>
-        <label htmlFor="status">
+
+        {/**
+       <label htmlFor="status">
           <TextField
             type="text"
             id="status"
@@ -183,6 +188,8 @@ const EditClass = () => {
             onChange={handleValueChange}
           />
         </label>
+      */}
+
         <label htmlFor="price">
           <TextField
             type="number"

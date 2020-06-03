@@ -6,7 +6,9 @@ import { axiosWithAuth } from "../utils/axiosWithAuth";
 
 const Content = () => {
   const dispatch = useDispatch();
-  const { homepageClasses } = useSelector((state) => state.homepageReducer);
+  const { homepageClasses, instructorsInfo } = useSelector(
+    (state) => state.homepageReducer
+  );
 
   useEffect(() => {
     dispatch({ type: "FETCHING_HOMEPAGE_CLASSES" });
@@ -20,6 +22,22 @@ const Content = () => {
         dispatch({
           type: "HOMEPAGE_CLASS_ERROR",
           payload: err.response.data.errorMessage,
+        });
+      });
+  }, []);
+
+  useEffect(() => {
+    dispatch({ type: "FETCHING_INSTRUCTORS" });
+    axiosWithAuth()
+      .get(`/api/instructors`)
+      .then((res) => {
+        dispatch({ type: "SAVING_ALL_INSTRUCTORS", payload: res.data });
+      })
+      .catch((err) => {
+        console.log(err.response.data);
+        dispatch({
+          type: "SAVING_ALL_INSTRUCTORS_ERROR",
+          payload: err.response.data,
         });
       });
   }, []);
@@ -62,7 +80,8 @@ const Content = () => {
       <div className="Carousel-wrapper">
         <h4>our team</h4>
         <h1>Meet the instructors</h1>
-        <ContentCarousel />
+
+        <ContentCarousel instructorsInfo={instructorsInfo} />
       </div>
     </div>
   );

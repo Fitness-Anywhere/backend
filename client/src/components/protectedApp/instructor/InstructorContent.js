@@ -4,8 +4,9 @@ import AddClassesForm from "./AddClassesForm";
 
 const InstructorContent = ({ setUpdateData, instructorClass }) => {
   const dispatch = useDispatch();
-  const reducer = useSelector((state) => state.userReducer);
-  const { addClassSuccessfull } = reducer;
+  const { addClassSuccessfull } = useSelector((state) => state.userReducer);
+  //  const { addClassSuccessfull } = reducer;
+  //   const [addClassSuccessfull] = useState(true);
 
   setTimeout(() => {
     if (addClassSuccessfull) {

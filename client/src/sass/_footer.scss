@@ -1,29 +1,27 @@
 .Footer {
-  //   height: 15vh;
   background: #111;
   color: $white;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem 2rem;
 
   footer {
     width: $main-width;
     margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
+    @include flex(space-between);
     text-align: center;
-    //  height: 5vh;
-    //  border: 1px solid red;
     padding: 2rem 1rem;
 
     h1 {
-      // margin: 2rem 0;
-      font-weight: normal;
+      font-weight: $sm-font;
       text-transform: capitalize;
       font-size: 2.5rem;
+
+      @media (max-width: $desktop) {
+        font-size: 2rem;
+      }
     }
 
     nav {
-      // text-align: center;
       a {
         font-size: 1.5rem;
         color: $white;
@@ -40,6 +38,10 @@
     margin-top: 2.5rem;
     font-weight: lighter;
     font-size: 0.9rem;
+
+    @media (max-width: $desktop) {
+      font-size: 0.8rem;
+    }
 
     span {
       font-weight: normal;
