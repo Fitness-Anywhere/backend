@@ -84,9 +84,11 @@ const ClientSingleClass = () => {
               </div>
             </div>
           </div>
-          <div className="googleMap-wrapper">
+          {/**
+         <div className="googleMap-wrapper">
             <GoogleMap location={currentClass.location} />
           </div>
+         */}
 
           {/**
            <div className="goback-btn">
