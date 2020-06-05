@@ -1,5 +1,5 @@
 // REACT I only
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -14,7 +14,7 @@ const initialValues = {
 function Login() {
   const history = useHistory();
   const { register, errors, handleSubmit, reset } = useForm({ initialValues });
-
+  const [togglePassword, setTogglePassword] = useState(false);
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.credentialReducer);
 
@@ -71,6 +71,9 @@ function Login() {
     }
   };
 
+  const toggle = () => {
+    setTogglePassword(!togglePassword);
+  };
   //   const testing = () => {
   //     dispatch({ type: "RESET_BACK_TO_DEFAULT" });
   //   };
@@ -93,12 +96,15 @@ function Login() {
         </label>
         <label htmlFor="password">
           <input
-            type="password"
+            type={!togglePassword ? "password" : "text"}
             name="password"
             id="password"
             placeholder="password"
             ref={register({ required: true })}
           />
+          <span className="togglePassword" onClick={toggle}>
+            {!togglePassword ? "show" : "hide"}
+          </span>
           {errors.username && errors.username.type === "required" && (
             <p className="Login-error">Required field</p>
           )}

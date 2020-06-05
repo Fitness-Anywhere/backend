@@ -20,12 +20,13 @@ export default function AlertDialog({ option }) {
 
   const handleClose = () => {
     dispatch({ type: "RESET_BACK_TO_DEFAULT" });
+
     setOpen(false);
     setToggle(false);
   };
 
-  const toggleForm = () => {
-    setToggle(true);
+  const toggleForm = (e) => {
+    setToggle(!toggle);
   };
 
   return (
@@ -56,6 +57,9 @@ export default function AlertDialog({ option }) {
             </div>
           </div>
         </DialogContent>
+        {/** 
+         this toggles the login/signup form,
+      */}
         {!toggle && option !== "signup" ? (
           <div className="option-btn">
             <span>
@@ -64,7 +68,11 @@ export default function AlertDialog({ option }) {
             </span>
           </div>
         ) : (
-          ""
+          <div className="option-btn">
+            <span>
+              Already a member? <button onClick={toggleForm}>Log in</button>
+            </span>
+          </div>
         )}
       </Dialog>
     </div>
