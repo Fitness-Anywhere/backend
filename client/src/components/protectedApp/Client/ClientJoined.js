@@ -5,21 +5,21 @@ import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 import { useDispatch } from "react-redux";
 
 const ClientJoined = ({ cls }) => {
-  const { image_url } = cls;
-  const {id} = useParams();
+  //   const { image_url } = cls;
+  const { id } = useParams();
   const dispatch = useDispatch();
 
   const deleteJoined = async () => {
     try {
       await axiosWithAuth().delete(`/api/clients/${id}/classes/${cls.id}`);
       const res = await axiosWithAuth().get(`/api/clients/${id}/classes`);
-      dispatch({ 
-        type: 'SAVING_JOINED_CLASSES',
-        payload: res.data
+      dispatch({
+        type: "SAVING_JOINED_CLASSES",
+        payload: res.data,
       });
-    } catch(err) {
-        console.log(err);
-    };
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

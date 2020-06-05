@@ -28,7 +28,7 @@ const ClientProfile = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [id]);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_RERENDER_CLASSES" });
@@ -43,36 +43,34 @@ const ClientProfile = () => {
       });
   }, [dispatch, id]);
 
-  return (reducer &&
-    <div className="ClientProfile">
-      <Sharednav />
-      <div className="ClientProfile-wrapper">
-        <div className="profile-icon">
-          <p>{`${clientName.first_name} ${clientName.last_name}`}</p>
-          <RiAccountCircleLine />
-        </div>
-        <div className="flex">
-          <h2>Schedule</h2>
-          <div className="toggle-message">
-            {reducer.length === 0 && (
-              <p>looks like you haven't join any classes yet.</p>
-            )}
+  return (
+    reducer && (
+      <div className="ClientProfile">
+        <Sharednav />
+        <div className="ClientProfile-wrapper">
+          <div className="profile-icon">
+            <p>{`${clientName.first_name} ${clientName.last_name}`}</p>
+            <RiAccountCircleLine />
+          </div>
+          <div className="flex">
+            <h2>Schedule</h2>
+            <div className="toggle-message">
+              {reducer.length === 0 && (
+                <p>looks like you haven't join any classes yet.</p>
+              )}
 
-            <div className="find-classes">
-              <Link to={`/account/client/${id}`}>find classes</Link>
+              <div className="find-classes">
+                <Link to={`/account/client/${id}`}>find classes</Link>
+              </div>
             </div>
           </div>
         </div>
+        <div className="show-joined-classes">
+          {reducer.length > 0 &&
+            reducer.map((cls) => <ClientJoined key={cls.id} cls={cls} />)}
+        </div>
       </div>
-      <div className="show-joined-classes">
-        {reducer.length > 0 && reducer.map((cls) => (
-          <ClientJoined
-            key={cls.id}
-            cls={cls}
-          />
-        ))}
-      </div>
-    </div>
+    )
   );
 };
 

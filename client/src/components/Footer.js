@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
 
 const Footer = () => {
@@ -9,7 +8,7 @@ const Footer = () => {
         <h1>fitness anywhere</h1>
         <nav>
           <a
-            href="https://github.com/Build-Week-Anywhere-Fitness-04"
+            href="https://github.com/Fitness-Anywhere/App"
             target="_blank"
             rel="noopener noreferrer"
           >

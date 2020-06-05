@@ -38,6 +38,10 @@
         border: 1px solid rgb(201, 200, 200);
         color: $black;
 
+        &:valid {
+          background: none;
+        }
+
         @media (max-width: $med-desktop) {
           padding: 0.3rem;
         }
@@ -45,6 +49,21 @@
         &::placeholder {
           font-weight: 300;
           text-transform: capitalize;
+        }
+      }
+
+      .togglePassword {
+        position: absolute;
+        font-size: 0.7rem;
+        top: 26%;
+        left: 90%;
+        z-index: 10;
+        cursor: pointer;
+        color: grey;
+
+        @media (max-width: $med_desktop) {
+          font-size: 0.5rem;
+          top: 23%;
         }
       }
     }

@@ -27,16 +27,23 @@ export const homepageReducer = (state = initialValues, action) => {
         loading: true,
       };
     case "SAVING_ALL_INSTRUCTORS":
-      let checkLength = "";
-      if (action.payload.length > 3) {
-        checkLength = action.payload.slice(0, 3);
+      let getInstructor = [];
+
+      // check if instructor has an image
+      let checkLength = action.payload.filter(
+        (inst) => inst.image_url !== null
+      );
+
+      // trim array if its length is greater than 3
+      if (checkLength.length > 3) {
+        getInstructor = checkLength.slice(0, 3);
       } else {
-        checkLength = action.payload;
+        getInstructor = checkLength;
       }
       return {
         ...state,
         loading: true,
-        instructorsInfo: checkLength,
+        instructorsInfo: getInstructor,
       };
     case "SAVING_ALL_INSTRUCTORS_ERROR":
       return {

@@ -34,8 +34,6 @@ const values = {
   description: "",
 };
 
-const getTime = new Date().toLocaleDateString();
-
 const EditClass = () => {
   const { id, c_id } = useParams();
   const history = useHistory();

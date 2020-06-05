@@ -9,6 +9,7 @@ const Content = () => {
   const { homepageClasses, instructorsInfo } = useSelector(
     (state) => state.homepageReducer
   );
+  // comment
 
   useEffect(() => {
     dispatch({ type: "FETCHING_HOMEPAGE_CLASSES" });
@@ -24,7 +25,7 @@ const Content = () => {
           payload: err.response.data.errorMessage,
         });
       });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_INSTRUCTORS" });
@@ -40,7 +41,7 @@ const Content = () => {
           payload: err.response.data,
         });
       });
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <div className="marketing-Content">
