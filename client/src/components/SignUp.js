@@ -1,7 +1,6 @@
 // REACT I only
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
 
@@ -15,7 +14,6 @@ const initialValues = {
 };
 
 function SignUp() {
-  const history = useHistory();
   const { register, errors, handleSubmit, reset } = useForm({ initialValues });
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.credentialReducer);

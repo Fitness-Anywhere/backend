@@ -1,19 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { convertingTime } from "../../../helperFunctions/convertingTime";
+// import { convertingTime } from "../../../helperFunctions/convertingTime";
 import Sharednav from "../Sharednav";
 import GoogleMap from "../googleMap";
 import ClientModel from "./ClientModel";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
-import { parse } from "date-fns";
+// import { parse } from "date-fns";
 
 const ClientSingleClass = () => {
   const { id, c_id } = useParams();
   const dispatch = useDispatch();
   const [currentClass, setCurrentClass] = useState();
 
-  const { classesJoined } = useSelector(state => state.clientReducer);
+  const { classesJoined } = useSelector((state) => state.clientReducer);
 
   const fetchClass = async () => {
     const res = await axiosWithAuth().get(`/api/classes/${c_id}`);
@@ -23,9 +23,7 @@ const ClientSingleClass = () => {
   useEffect(() => {
     dispatch({ type: "PROCCESSING_PAYMENT" });
     fetchClass();
-  }, [classesJoined]);
-
-  console.log(classesJoined);
+  }, [classesJoined, dispatch]);
 
   return (
     <>
@@ -76,22 +74,25 @@ const ClientSingleClass = () => {
                   <p>{currentClass.description}</p>
                 </div>
                 {/* Show button if client has not joined the class */}
-                { classesJoined.findIndex(cls => cls.id.toString() === c_id) === -1  && 
+                {classesJoined.findIndex(
+                  (cls) => cls.id.toString() === c_id
+                ) === -1 && (
                   <div id="buy-btn">
                     <ClientModel data={currentClass} />
                   </div>
-                }
+                )}
               </div>
             </div>
           </div>
           <div className="googleMap-wrapper">
-            {/**
-       <GoogleMap location={currentClass.location} />
-      */}
+            <GoogleMap location={currentClass.location} />
           </div>
-          {/* <div className="goback-btn">
-          <Link to={`/account/client/${id}`}>Go back</Link>
-        </div> */}
+
+          {/**
+           <div className="goback-btn">
+            <Link to={`/account/client/${id}`}>Go back</Link>
+          </div>
+         */}
         </>
       )}
     </>

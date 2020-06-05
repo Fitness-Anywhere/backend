@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useStripe, useElements, CardElement } from "@stripe/react-stripe-js";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
@@ -10,27 +10,17 @@ import CardSection from "./CardSection";
 
 export default function CheckoutForm() {
   const dispatch = useDispatch();
-  // const [client, setClient] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const stripe = useStripe();
   const elements = useElements();
   const { id, c_id } = useParams();
-  const { push } = useHistory();
 
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
-    //  try {
-    //    const getData = await axiosWithAuth().get(
-    //      `/api/clients/${params.id}/classes/${class_id}/payment`
-    //    );
-    //    console.dir("getData ", getData);
-    //  } catch (error) {
-    //    console.log("error ", error);
-    //  }
+
     setIsProcessing(true);
-    //  dispatch({ type: "PROCCESSING_PAYMENT" });
 
     axiosWithAuth()
       .post(`/api/clients/${id}/classes`, { class_id: c_id })

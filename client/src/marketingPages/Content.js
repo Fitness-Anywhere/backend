@@ -24,7 +24,7 @@ const Content = () => {
           payload: err.response.data.errorMessage,
         });
       });
-  }, []);
+  }, [dispatch]);
 
   useEffect(() => {
     dispatch({ type: "FETCHING_INSTRUCTORS" });
@@ -40,7 +40,7 @@ const Content = () => {
           payload: err.response.data,
         });
       });
-  }, []);
+  }, [dispatch]);
   return (
     <div>
       <div className="marketing-Content">

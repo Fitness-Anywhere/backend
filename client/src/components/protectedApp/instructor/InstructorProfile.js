@@ -32,7 +32,7 @@ const InstructorProfile = () => {
           payload: err.response.data,
         });
       });
-  }, []);
+  }, [dispatch, id]);
   useEffect(() => {
     if (img) {
       dispatch({ type: "UPDATING_INSTRUCTOR_IMG" });
@@ -49,7 +49,7 @@ const InstructorProfile = () => {
           });
         });
     }
-  }, [img]);
+  }, [img, dispatch]);
 
   const uploadImage = (e) => {
     const files = e.target.files[0];
