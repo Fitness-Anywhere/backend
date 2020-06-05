@@ -1,5 +1,5 @@
 // REACT I only
-import React from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { axiosWithAuth } from "../utils/axiosWithAuth";
@@ -17,6 +17,7 @@ function SignUp() {
   const { register, errors, handleSubmit, reset } = useForm({ initialValues });
   const dispatch = useDispatch();
   const { loading, error } = useSelector((state) => state.credentialReducer);
+  const [togglePassword, setTogglePassword] = useState(false);
 
   // POST / api / auth / instructors / register
   // POST / api / auth / clients / register
@@ -74,6 +75,10 @@ function SignUp() {
           });
         });
     }
+  };
+
+  const toggle = () => {
+    setTogglePassword(!togglePassword);
   };
 
   return (
@@ -146,12 +151,15 @@ function SignUp() {
 
         <label htmlFor="password">
           <input
-            type="password"
+            type={!togglePassword ? "password" : "text"}
             name="password"
             id="password"
             placeholder="password"
             ref={register({ required: true })}
           />
+          <span className="togglePassword" onClick={toggle}>
+            {!togglePassword ? "show" : "hide"}
+          </span>
           {errors.password && <p className="Login-error">Required field</p>}
         </label>
 
