@@ -9,6 +9,7 @@ const Content = () => {
   const { homepageClasses, instructorsInfo } = useSelector(
     (state) => state.homepageReducer
   );
+  // comment
 
   useEffect(() => {
     dispatch({ type: "FETCHING_HOMEPAGE_CLASSES" });
