@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { convertingTime } from "../../../helperFunctions/convertingTime";
 import Sharednav from "../Sharednav";
 import GoogleMap from "../googleMap";
 import ClientModel from "./ClientModel";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
-// import { parse } from "date-fns";
+import { getDate, getTime } from "../../../utils/dateFunctions";
 
 const ClientSingleClass = () => {
   const { id, c_id } = useParams();
@@ -55,8 +54,12 @@ const ClientSingleClass = () => {
                     <span>${currentClass.price}</span>
                   </p>
                   <p className="start">
-                    Starts at:
-                    <span>{currentClass.start_time}</span>
+                    Day:
+                    <span>{getDate(currentClass.start_time)}</span>
+                  </p>
+                  <p>
+                    Time:
+                    <span>{getTime(currentClass.start_time)}</span>
                   </p>
                   <p className="type">
                     Class type:

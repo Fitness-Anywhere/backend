@@ -2,7 +2,7 @@ import React from "react";
 import { useParams, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import Sharednav from "../Sharednav";
-import { convertingTime } from "../../../helperFunctions/convertingTime";
+import { getDate, getWeekDay, getTime } from "../../../utils/dateFunctions";
 
 const InstructorSingleClass = () => {
   const { c_id } = useParams();
@@ -29,7 +29,6 @@ const InstructorSingleClass = () => {
     //  status,
   } = findClass;
 
-  const time = convertingTime(start_time);
   return (
     <div>
       <Sharednav />
@@ -61,8 +60,12 @@ const InstructorSingleClass = () => {
                 <span>${price}</span>
               </p>
               <p className="start">
-                Starts at:
-                <span>{time}</span>
+                Day:
+                <span>{getDate(start_time)}</span>
+              </p>
+              <p>
+                Time:
+                <span>{getTime(start_time)}</span>
               </p>
               <p className="type">
                 Class type:

@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useRouteMatch, useHistory } from "react-router-dom";
 import { AiOutlineEdit, AiOutlineDelete } from "react-icons/ai";
-import { convertingTime } from "../../../helperFunctions/convertingTime";
+import { getDate, getWeekDay, getTime } from "../../../utils/dateFunctions";
 
 const InstructorCardClass = ({ clss, deleteClass }) => {
   const { id, duration, image_url, name, price, start_time } = clss;
@@ -9,10 +9,10 @@ const InstructorCardClass = ({ clss, deleteClass }) => {
   const { url } = useRouteMatch();
   const history = useHistory();
 
-  const time = convertingTime(start_time);
   const editBtn = () => {
     history.push(`${url}/edit/${id}`);
   };
+  
   return (
     <div className="InstructorCardClass">
       <Link to={`${url}/${id}/more-info`}>
@@ -29,7 +29,8 @@ const InstructorCardClass = ({ clss, deleteClass }) => {
           <span>{duration}</span> mins
         </p>
         <div className="bottom-row">
-          <p className="starts">{time}</p>
+          <p className="starts">{getDate(start_time)}<br/>{getWeekDay(start_time)}</p>
+          <p className="starts">{getTime(start_time)}</p>
           <div className="icons">
             <div className="edit" onClick={editBtn}>
               <AiOutlineEdit />

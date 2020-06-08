@@ -1,12 +1,10 @@
 import React from "react";
 import { Link, useRouteMatch } from "react-router-dom";
-import { convertingTime } from "../../../helperFunctions/convertingTime";
+import { getDate, getWeekDay, getTime } from "../../../utils/dateFunctions";
 
 const SingleResult = ({ cls, joinClass }) => {
   const { id, duration, image_url, name, price, start_time } = cls;
   const { url } = useRouteMatch();
-
-  const time = convertingTime(start_time);
 
   return (
     <div className="InstructorCardClass">
@@ -24,11 +22,8 @@ const SingleResult = ({ cls, joinClass }) => {
           <span>{duration}</span> mins
         </p>
         <div className="bottom-row">
-          <p className="starts">{time}</p>
-          {/* <div id="join" onClick={joinClass}>
-            join
-          </div>
-  */}
+          <p className="starts">{getDate(start_time)}<br/>{getWeekDay(start_time)}</p>
+          <p className="starts">{getTime(start_time)}</p>
         </div>
       </div>
     </div>
