@@ -1,6 +1,5 @@
 import React from "react";
 import { Link, useRouteMatch, useParams } from "react-router-dom";
-// import { convertingTime } from "../../../helperFunctions/convertingTime";
 import { getDate, getWeekDay, getTime } from "../../../utils/dateFunctions";
 
 const InstructorCardClass = ({ cls, joinClass }) => {

@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { convertingTime } from "../../../helperFunctions/convertingTime";
 import Sharednav from "../Sharednav";
 import GoogleMap from "../googleMap";
 import ClientModel from "./ClientModel";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
 import { getDate, getTime } from "../../../utils/dateFunctions";
-// import { parse } from "date-fns";
 
 const ClientSingleClass = () => {
   const { id, c_id } = useParams();
