@@ -6,6 +6,7 @@ import Sharednav from "../Sharednav";
 import GoogleMap from "../googleMap";
 import ClientModel from "./ClientModel";
 import { axiosWithAuth } from "../../../utils/axiosWithAuth";
+import { getDate, getTime } from "../../../utils/dateFunctions";
 // import { parse } from "date-fns";
 
 const ClientSingleClass = () => {
@@ -55,8 +56,12 @@ const ClientSingleClass = () => {
                     <span>${currentClass.price}</span>
                   </p>
                   <p className="start">
-                    Starts at:
-                    <span>{currentClass.start_time}</span>
+                    Day:
+                    <span>{getDate(currentClass.start_time)}</span>
+                  </p>
+                  <p>
+                    Time:
+                    <span>{getTime(currentClass.start_time)}</span>
                   </p>
                   <p className="type">
                     Class type:
