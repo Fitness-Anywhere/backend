@@ -43,7 +43,6 @@
 
   .InstructorCardClass-description {
     padding: 0 0.5rem;
-    text-transform: capitalize;
 
     .Instructor-top-row {
       @include flex(space-between);
@@ -84,10 +83,8 @@
 
       .starts {
         color: $black;
-        border: 1px solid $black;
         display: inline-block;
-        padding: 0.8rem 1rem;
-        border-radius: 4px;
+        padding: 0.8rem 0;
 
         @media (max-width: $desktop) {
           padding: 0.5rem 1rem;

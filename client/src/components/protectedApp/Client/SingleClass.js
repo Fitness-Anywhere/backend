@@ -1,14 +1,13 @@
 import React from "react";
 import { Link, useRouteMatch, useParams } from "react-router-dom";
-import { convertingTime } from "../../../helperFunctions/convertingTime";
+// import { convertingTime } from "../../../helperFunctions/convertingTime";
+import { getDate, getWeekDay, getTime } from "../../../utils/dateFunctions";
 
 const InstructorCardClass = ({ cls, joinClass }) => {
   const { duration, image_url, name, price, start_time } = cls;
   const class_id = cls.id;
   const { url } = useRouteMatch();
   const { id } = useParams();
-
-  const time = convertingTime(start_time);
 
   return (
     <div className="InstructorCardClass">
@@ -26,7 +25,8 @@ const InstructorCardClass = ({ cls, joinClass }) => {
           <span>{duration}</span> mins
         </p>
         <div className="bottom-row">
-          <p className="starts">{time}</p>
+          <p className="starts">{getDate(start_time)}<br/>{getWeekDay(start_time)}</p>
+          <p className="starts">{getTime(start_time)}</p>
         </div>
       </div>
     </div>
