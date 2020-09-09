@@ -78,7 +78,7 @@ const ClientSingleClass = () => {
                 </div>
                 {/* Show button if client has not joined the class */}
                 {classesJoined.findIndex(
-                  (cls) => cls.id.toString() === c_id
+                  (cls) => cls.id.toString() === c_id,
                 ) === -1 && (
                   <div id="buy-btn">
                     <ClientModel data={currentClass} />
@@ -87,11 +87,10 @@ const ClientSingleClass = () => {
               </div>
             </div>
           </div>
-          {/**
-         <div className="googleMap-wrapper">
+
+          <div className="googleMap-wrapper">
             <GoogleMap location={currentClass.location} />
           </div>
-         */}
 
           {/**
            <div className="goback-btn">
