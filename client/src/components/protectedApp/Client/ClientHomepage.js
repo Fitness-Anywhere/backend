@@ -34,7 +34,12 @@ const ClientHomePage = () => {
     axiosWithAuth()
       .get(`/api/classes`)
       .then((res) => {
-        dispatch({ type: "SAVING_CLIENT_CLASSES", payload: res.data });
+        const classes = res.data.filter(cls => {
+          const classDate = new Date(cls.start_time);
+          return classDate > Date.now();
+        });
+        
+        dispatch({ type: "SAVING_CLIENT_CLASSES", payload: classes });
       })
       .catch((err) => {
         console.log(err);
