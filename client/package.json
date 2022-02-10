@@ -18,7 +18,7 @@
     "bootstrap": "^4.4.1",
     "date-fns": "^2.12.0",
     "google-map-react": "^1.1.7",
-    "node-sass": "^4.14.0",
+    "node-sass": "^7.0.0",
     "react": "^16.13.1",
     "react-bootstrap": "^1.0.1",
     "react-dom": "^16.13.1",
